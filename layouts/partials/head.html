@@ -1,0 +1,34 @@
+{{- $description := site.Params.description -}}
+{{- with .Description -}}{{ $description = . }}{{- end -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome -}}{{ $title = printf "%s · %s" .Title site.Title }}{{- end -}}
+{{- $robots := "index, follow" -}}
+{{- if .Params.noindex -}}{{ $robots = "noindex, follow" }}{{- end -}}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="robots" content="{{ $robots }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="{{ "favicon.ico" | absURL }}" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="48x48" href="{{ "favicon-48x48.png" | absURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | absURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
+<meta name="theme-color" content="#d98339">
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ "img/android-chrome-512x512.png" | absURL }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ "img/android-chrome-512x512.png" | absURL }}">
+
+{{ partial "site-schema.html" . }}

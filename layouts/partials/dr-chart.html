@@ -1,0 +1,73 @@
+{{- /* Small inline-SVG sparkline of a directory's Ahrefs DR history, server-rendered
+      (no client-side JS/chart library) as a smooth line through quadratic-bezier
+      midpoints, with the area beneath it filled by a fading gradient. */ -}}
+{{- $history := index hugo.Data.dr_history .File.ContentBaseName | default slice -}}
+{{- $n := len $history -}}
+{{- if ge $n 2 -}}
+  {{- $w := 168.0 -}}
+  {{- $h := 48.0 -}}
+  {{- $padX := 3.0 -}}
+  {{- $padY := 6.0 -}}
+
+  {{- $drs := slice -}}
+  {{- range $history }}{{ $drs = $drs | append (float .dr) }}{{ end -}}
+  {{- $sorted := sort $drs -}}
+  {{- $min := index $sorted 0 -}}
+  {{- $max := index $sorted (sub (len $sorted) 1) -}}
+  {{- $range := sub $max $min -}}
+
+  {{- $stepX := div (sub $w (mul $padX 2)) (float (sub $n 1)) -}}
+  {{- $plotH := sub $h (mul $padY 2) -}}
+
+  {{- $coords := slice -}}
+  {{- range $i, $entry := $history -}}
+    {{- $x := add $padX (mul (float $i) $stepX) -}}
+    {{- $y := div $h 2.0 -}}
+    {{- if gt $range 0.0 -}}
+      {{- $normalized := div (sub (float $entry.dr) $min) $range -}}
+      {{- $y = sub (sub $h $padY) (mul $normalized $plotH) -}}
+    {{- end -}}
+    {{- $coords = $coords | append (dict "x" $x "y" $y) -}}
+  {{- end -}}
+
+  {{- $first := index $coords 0 -}}
+  {{- $line := printf "M%.1f,%.1f" $first.x $first.y -}}
+  {{- range $i, $p := $coords -}}
+    {{- if lt $i (sub (len $coords) 1) -}}
+      {{- $next := index $coords (add $i 1) -}}
+      {{- $midX := div (add $p.x $next.x) 2.0 -}}
+      {{- $midY := div (add $p.y $next.y) 2.0 -}}
+      {{- $line = printf "%s Q%.1f,%.1f %.1f,%.1f" $line $p.x $p.y $midX $midY -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $last := index $coords (sub (len $coords) 1) -}}
+  {{- $line = printf "%s L%.1f,%.1f" $line $last.x $last.y -}}
+  {{- $area := printf "%s L%.1f,%.1f L%.1f,%.1f Z" $line $last.x $h $first.x $h -}}
+
+  {{- $firstEntry := index $history 0 -}}
+  {{- $lastEntry := index $history (sub $n 1) -}}
+  {{- $delta := sub (float $lastEntry.dr) (float $firstEntry.dr) -}}
+  {{- $trend := "is-flat" -}}
+  {{- if gt $delta 0.0 }}{{ $trend = "is-up" }}{{ else if lt $delta 0.0 }}{{ $trend = "is-down" }}{{ end -}}
+  {{- $gradientID := printf "dr-chart-fade-%s" .File.ContentBaseName -}}
+
+  <div class="dr-chart">
+    <svg class="dr-chart-svg {{ $trend }}" viewBox="0 0 {{ $w }} {{ $h }}" preserveAspectRatio="none"
+         role="img" aria-label="Ahrefs DR trend: {{ $firstEntry.dr }} in {{ (time.AsTime $firstEntry.date).Format "Jan 2006" }}, now {{ $lastEntry.dr }}">
+      <defs>
+        <linearGradient id="{{ $gradientID }}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="currentColor" stop-opacity="0.22" />
+          <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path class="dr-chart-area" d="{{ $area }}" fill="url(#{{ $gradientID }})" stroke="none" />
+      <path class="dr-chart-line" d="{{ $line }}" fill="none" />
+    </svg>
+    <span class="dr-chart-delta {{ $trend }}">
+      {{- if gt $delta 0.0 -}}▲ +{{ $delta }}
+      {{- else if lt $delta 0.0 -}}▼ {{ $delta }}
+      {{- else -}}– no change
+      {{- end }} since {{ (time.AsTime $firstEntry.date).Format "Jan 2006" }}
+    </span>
+  </div>
+{{- end -}}

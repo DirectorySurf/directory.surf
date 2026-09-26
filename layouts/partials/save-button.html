@@ -1,0 +1,14 @@
+{{- /* Call with a directory Page. Renders a bookmark toggle that saves/unsaves it in the
+      visitor's browser (localStorage, no account/server involved) -- progressively enhanced by
+      js/saved-directories.js, which also builds this same markup for cards it renders
+      client-side on /saved/. Stops the click from bubbling so it also works nested inside a
+      directory-card's outer <a>. */ -}}
+<button
+  type="button"
+  class="save-toggle"
+  data-save-toggle
+  data-save-slug="{{ .File.ContentBaseName }}"
+  aria-pressed="false"
+  aria-label="Save {{ .Title }} for later"
+  title="Save for later"
+><svg class="save-toggle-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1V20l-6.5-4-6.5 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>

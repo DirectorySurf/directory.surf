@@ -1,0 +1,80 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="footer-brand-link" href="{{ "/" | relURL }}">
+        <img class="footer-brand-icon" src="{{ "img/logo.png" | relURL }}" width="28" height="28" alt="">
+        <span class="footer-title">{{ site.Title }}</span>
+      </a>
+      <p class="footer-description">{{ site.Params.description }}</p>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Browse</span>
+      <ul>
+        <li>
+          <a href="{{ "/" | relURL }}">
+            <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 11.5 12 4l8 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>All directories</span>
+          </a>
+        </li>
+        {{ with site.GetPage "category" }}
+          {{ range .RegularPages.ByTitle }}
+            <li>
+              <a href="{{ .RelPermalink }}">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M11.3 3.7 4.6 10.4a2 2 0 0 0 0 2.8l6.2 6.2a2 2 0 0 0 2.8 0l6.7-6.7a2 2 0 0 0 .6-1.6l-.3-5.4a2 2 0 0 0-1.9-1.9l-5.4-.3a2 2 0 0 0-1.6.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <circle cx="15.5" cy="8.5" r="1.4" fill="currentColor"/>
+                </svg>
+                <span>{{ .Title }}</span>
+              </a>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Explore</span>
+      <ul>
+        <li>
+          <a href="{{ "/alternatives/" | relURL }}">
+            <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M17 3.5 20.5 7 17 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.5 7h17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M7 13.5 3.5 17 7 20.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20.5 17h-17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Alternatives</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ "/guides/" | relURL }}">
+            <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 5.5c2.2-1.3 5-1.3 7 0v13c-2-1.3-4.8-1.3-7 0v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M20 5.5c-2.2-1.3-5-1.3-7 0v13c2-1.3 4.8-1.3 7 0v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            <span>Guides</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ "/saved/" | relURL }}">
+            <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.5 3.5h11a1 1 0 0 1 1 1V20l-6.5-4-6.5 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+            <span>Saved</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ now.Year }} {{ site.Title }}. Favicons via Google's favicon service. Domain Rating data via Ahrefs' free public API.</p>
+    <a class="footer-top-link" href="#top">
+      <span>Back to top</span>
+      <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</footer>

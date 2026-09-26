@@ -1,0 +1,183 @@
+{{ define "main" }}
+  {{ $price := .Params.pricing }}
+  {{ $slug := .File.ContentBaseName }}
+  <article class="directory-page">
+    <header class="directory-hero">
+      <div class="directory-hero-logo">{{ partial "favicon-img.html" (dict "page" . "size" 72) }}</div>
+      <div class="directory-hero-main">
+        <div class="directory-hero-title-row">
+          <h1>{{ .Title }}</h1>
+          <a class="btn-primary directory-hero-visit" href="{{ partial "utm-url.html" .Params.website }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin">Visit site ↗</a>
+          {{ partial "save-button.html" . }}
+        </div>
+        {{ partial "social-links.html" . }}
+        <div class="directory-hero-badges">
+          {{ range .Params.categories }}
+            {{ with site.GetPage (printf "/category/%s" .) }}
+              {{ partial "category-badge.html" (dict "page" .) }}
+            {{ end }}
+          {{ end }}
+          {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+            <span class="badge badge-free">Free</span>
+          {{ else if $price.free_available }}
+            <span class="badge badge-free">Free tier</span>
+          {{ else }}
+            <span class="badge">From ${{ $price.starting_price }}/{{ $price.price_period }}</span>
+          {{ end }}
+          <span class="badge badge-dr">DR {{ .Params.ahrefs_dr }}</span>
+        </div>
+        <p class="directory-lede">{{ .Params.description }}</p>
+        {{ with .Params.submission_url }}
+          <a class="btn-primary directory-hero-submit" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin">Submit your tool ↗</a>
+        {{ end }}
+      </div>
+    </header>
+
+    <dl class="fact-list">
+      <div>
+        <dt>{{ partial "icon.html" "pricing" }}Pricing</dt>
+        <dd>
+          {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+            <span class="badge badge-free">Free</span>
+          {{ else if $price.free_available }}
+            <span class="badge badge-free">Free tier</span> + from ${{ $price.starting_price }}/{{ $price.price_period }}
+          {{ else }}
+            From ${{ $price.starting_price }}/{{ $price.price_period }}
+          {{ end }}
+          {{ with $price.notes }}<p class="fact-note">{{ . }}</p>{{ end }}
+        </dd>
+      </div>
+      <div>
+        <dt>{{ partial "icon.html" "dr" }}Ahrefs DR</dt>
+        <dd>
+          {{ .Params.ahrefs_dr }}
+          {{ partial "dr-chart.html" . }}
+        </dd>
+      </div>
+      <div>
+        <dt>{{ partial "icon.html" "visitors" }}Monthly visitors</dt>
+        <dd>{{ partial "format-visitors.html" . }}</dd>
+      </div>
+      <div>
+        <dt>{{ partial "icon.html" "founded" }}Founded</dt>
+        <dd>{{ (.Params.founded | time.AsTime).Format "2006" }}</dd>
+      </div>
+      <div>
+        <dt>{{ partial "icon.html" "website" }}Website</dt>
+        <dd><a href="{{ partial "utm-url.html" .Params.website }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin">{{ .Params.website }} ↗</a></dd>
+      </div>
+      {{ with .Params.location }}
+        <div>
+          <dt>{{ partial "icon.html" "location" }}Location</dt>
+          <dd>{{ . }}</dd>
+        </div>
+      {{ end }}
+      {{ with .Params.founders }}
+        <div>
+          <dt>{{ partial "icon.html" "founders" }}Founders</dt>
+          <dd class="founders-list">
+            {{ range $i, $f := . }}{{ if $i }}, {{ end }}<span class="founder">{{ $f.name }}{{ with $f.twitter }}<a class="founder-x-link" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="{{ $f.name }} on X" title="{{ $f.name }} on X">{{ partial "icon-x.html" }}</a>{{ end }}</span>{{ end }}
+          </dd>
+        </div>
+      {{ end }}
+      {{ with .Params.contact }}
+        <div>
+          <dt>{{ partial "icon.html" "contact" }}Contact</dt>
+          <dd>
+            {{ with .email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
+            {{ with .page }}{{ if $.Params.contact.email }}<br>{{ end }}<a href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin">Contact page ↗</a>{{ end }}
+          </dd>
+        </div>
+      {{ end }}
+    </dl>
+
+    {{ with .Params.plans }}
+      <section class="directory-plans">
+        <h2><span class="section-icon">{{ partial "icon.html" "plans" }}</span>Plans</h2>
+        <div class="plan-cards">
+          {{ range . }}
+            <div class="plan-card{{ if .badge }} is-featured{{ end }}">
+              {{ with .badge }}<span class="plan-card-badge">{{ . }}</span>{{ end }}
+              <h3 class="plan-card-name">{{ .name }}</h3>
+              <p class="plan-card-price">
+                {{ if eq (int .price) 0 }}
+                  Free
+                {{ else }}
+                  <span class="plan-card-price-amount">${{ .price }}</span>{{ with .period }}<span class="plan-card-price-period">/{{ . }}</span>{{ end }}
+                {{ end }}
+              </p>
+              {{ with .description }}<p class="plan-card-desc">{{ . }}</p>{{ end }}
+              {{ with .features }}
+                <ul class="plan-card-features">
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+        <p class="plans-note">Plan details are set by {{ $.Title }} and may change -- confirm current pricing on their site before buying.</p>
+      </section>
+    {{ end }}
+
+    <div class="directory-body">
+      {{ .Content }}
+    </div>
+
+    {{ $altPage := site.GetPage (printf "/alternatives/%s" $slug) }}
+    {{ with $altPage }}
+      {{ $altDirs := slice }}
+      {{ range .Params.alternatives }}
+        {{ with site.GetPage (printf "/directory/%s" .) }}
+          {{ $altDirs = $altDirs | append . }}
+        {{ end }}
+      {{ end }}
+      {{ if $altDirs }}
+        <section class="directory-alternatives">
+          <h2><span class="section-icon">{{ partial "icon.html" "alternatives" }}</span>Alternatives to {{ $.Title }}</h2>
+          <div class="alt-preview-cards">
+            {{ range first 3 $altDirs }}
+              <a class="alt-preview-card" href="{{ .RelPermalink }}">
+                {{ partial "favicon-img.html" (dict "page" . "size" 24) }}
+                <span class="alt-preview-info">
+                  <span class="alt-preview-title">{{ .Title }}</span>
+                  <span class="alt-preview-desc">{{ .Params.description }}</span>
+                </span>
+              </a>
+            {{ end }}
+          </div>
+          <p class="alternatives-cta"><a href="{{ .RelPermalink }}">See all alternatives to {{ $.Title }} →</a></p>
+        </section>
+      {{ end }}
+    {{ end }}
+
+    {{ $guides := slice }}
+    {{ with site.GetPage "guides" }}
+      {{ range .RegularPages }}
+        {{ $mentioned := false }}
+        {{ range .Params.blocks }}
+          {{ if and (eq .type "directories") (in .slugs $slug) }}
+            {{ $mentioned = true }}
+          {{ end }}
+        {{ end }}
+        {{ if $mentioned }}
+          {{ $guides = $guides | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ if $guides }}
+      <section class="directory-guides">
+        <h2><span class="section-icon">{{ partial "icon.html" "guides" }}</span>Appeared in guides</h2>
+        <div class="guide-preview-cards">
+          {{ range first 3 $guides }}
+            <a class="guide-preview-card" href="{{ .RelPermalink }}">
+              <span class="guide-preview-info">
+                <span class="guide-preview-title">{{ .Title }}</span>
+                <span class="guide-preview-desc">{{ .Params.description }}</span>
+              </span>
+            </a>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </article>
+{{ end }}

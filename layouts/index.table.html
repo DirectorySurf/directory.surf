@@ -1,0 +1,6 @@
+{{- /* AJAX fragment: just the directory table for "All", used by the home/category tab switcher. */ -}}
+{{- with site.GetPage "directory" -}}
+  {{- $paginator := $.Paginate .RegularPages -}}
+  {{ partial "directory-table.html" $paginator.Pages }}
+  {{ partial "pagination.html" $paginator }}
+{{- end -}}

@@ -1,0 +1,22 @@
+{{- $items := slice -}}
+{{- with site.GetPage "directory" -}}
+  {{- range .RegularPages -}}
+    {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "type" "Directory" "description" .Params.description) -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.GetPage "category" -}}
+  {{- range .RegularPages -}}
+    {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "type" "Category" "description" .Params.description) -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.GetPage "guides" -}}
+  {{- range .RegularPages -}}
+    {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "type" "Guide" "description" .Params.subtitle) -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.GetPage "alternatives" -}}
+  {{- range .RegularPages -}}
+    {{- $items = $items | append (dict "title" .Title "url" .RelPermalink "type" "Alternatives" "description" "") -}}
+  {{- end -}}
+{{- end -}}
+{{ jsonify $items }}

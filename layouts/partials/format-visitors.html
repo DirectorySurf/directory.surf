@@ -1,0 +1,22 @@
+{{- /* Call with a directory Page. Formats .Params.monthly_visitors for display:
+      unset or 0 -> "N/A"; under 1,000 -> the plain number; 1,000 and up ->
+      abbreviated with a k/m suffix (1000 -> "1k", 1100 -> "1.1k", 2500000 -> "2.5m"),
+      trimming a trailing ".0". */ -}}
+{{- $n := float (.Params.monthly_visitors | default 0) -}}
+{{- if le $n 0.0 -}}
+  N/A
+{{- else if lt $n 1000.0 -}}
+  {{- printf "%.0f" $n -}}
+{{- else -}}
+  {{- $unit := "k" -}}
+  {{- $divisor := 1000.0 -}}
+  {{- if ge $n 1000000.0 -}}{{- $unit = "m" -}}{{- $divisor = 1000000.0 -}}{{- end -}}
+  {{- $scaled := div $n $divisor -}}
+  {{- if and (eq $unit "k") (ge $scaled 999.95) -}}
+    {{- $unit = "m" -}}
+    {{- $scaled = div $n 1000000.0 -}}
+  {{- end -}}
+  {{- $rounded := printf "%.1f" $scaled -}}
+  {{- $rounded = strings.TrimSuffix ".0" $rounded -}}
+  {{- $rounded -}}{{- $unit -}}
+{{- end -}}

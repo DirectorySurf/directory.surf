@@ -1,0 +1,8 @@
+# Month-to-month Ahrefs Domain Rating history, keyed by content/directory/<slug>.md.
+# Populated and updated automatically by scripts/fetch_dr.py -- don't hand-edit the
+# per-month entries, since it's rewritten (and re-sorted) on every run.
+#
+# Shape:
+#   <slug>:
+#     - date: "YYYY-MM-01"
+#       dr: <int>

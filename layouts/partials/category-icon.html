@@ -1,0 +1,15 @@
+{{- /* Call with a category Page. Inlines its `icon` SVG (assets/icons/<file>) so it can be
+       styled with currentColor; falls back to a generic folder icon if unset or not found. */ -}}
+{{- $page := . -}}
+{{- $svg := "" -}}
+{{- with $page.Params.icon -}}
+  {{- with resources.Get (printf "icons/%s" .) -}}
+    {{- $svg = .Content -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $svg -}}
+  {{- with resources.Get "icons/default.svg" -}}
+    {{- $svg = .Content -}}
+  {{- end -}}
+{{- end -}}
+{{ $svg | safeHTML }}

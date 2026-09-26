@@ -1,0 +1,12 @@
+{{- /* Sitewide WebSite structured data belongs on the homepage, per schema.org convention. */ -}}
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{{ (dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" site.Title
+  "description" site.Params.description
+  "url" site.BaseURL
+) | jsonify | safeJS }}
+</script>
+{{- end -}}

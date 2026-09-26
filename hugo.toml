@@ -1,0 +1,40 @@
+# TODO: replace with the real production domain before launch -- it feeds canonical
+# tags, the sitemap, robots.txt, and structured data, so a wrong value here actively
+# hurts SEO (self-referencing canonicals would point at example.com).
+baseURL = "https://example.com/"
+locale = "en-us"
+title = "Directory Surf"
+
+# We build our own category pages under content/category/ (a "categories" front matter
+# field is used as a plain list, not Hugo's built-in taxonomy), so disable taxonomy/term
+# page generation entirely.
+disableKinds = ["taxonomy", "term"]
+
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 25
+
+[outputs]
+  home = ["HTML", "JSON", "Table", "Directories"]
+
+# Lightweight HTML-fragment output (just the directory table, no page chrome) used by the
+# home/category tab switcher to swap content in via fetch() without a full page reload.
+[outputFormats.Table]
+  mediaType = "text/html"
+  baseName = "table"
+  notAlternative = true
+
+# Full directory dataset (favicon host, description, categories, pricing, DR) as JSON, fetched
+# client-side by js/saved-directories.js to render cards on /saved/ -- that page only has slugs
+# in localStorage, not the rest of the fields a card needs.
+[outputFormats.Directories]
+  mediaType = "application/json"
+  baseName = "directories"
+  notAlternative = true
+
+[params]
+  description = "A curated catalog of online directories — AI tool directories, SaaS directories, and more."
+
+[markup.goldmark.renderer]
+  unsafe = false

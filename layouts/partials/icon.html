@@ -1,0 +1,29 @@
+{{- /* Call with an icon name string (see the branches below). Renders a small inline
+      monoline SVG (stroke="currentColor", 24x24 viewBox) -- used for fact-list labels
+      and section headings on the directory page, styled/sized via .fact-icon-svg. */ -}}
+{{- $name := . -}}
+<svg class="fact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{{- if eq $name "pricing" -}}
+  <path d="M11 3H4v7l10 10 7-7L11 3Z"/><circle cx="8" cy="8" r="1.1" fill="currentColor" stroke="none"/>
+{{- else if eq $name "dr" -}}
+  <path d="M3 17l6-6 4 4 8-8"/><path d="M15 6h6v6"/>
+{{- else if eq $name "visitors" -}}
+  <circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6"/><path d="M15.5 5.3c1.6.5 2.7 2 2.7 3.7 0 1.7-1.1 3.2-2.7 3.7"/><path d="M20.5 20c0-2.6-1.6-4.8-3.9-5.6"/>
+{{- else if eq $name "founded" -}}
+  <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v4M16 3v4"/>
+{{- else if eq $name "website" -}}
+  <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9Z"/>
+{{- else if eq $name "location" -}}
+  <path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.3"/>
+{{- else if eq $name "founders" -}}
+  <circle cx="12" cy="8" r="3.3"/><path d="M5.3 20c0-3.8 3-6.8 6.7-6.8s6.7 3 6.7 6.8"/>
+{{- else if eq $name "contact" -}}
+  <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.2 8.5 6.8 8.5-6.8"/>
+{{- else if eq $name "plans" -}}
+  <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>
+{{- else if eq $name "alternatives" -}}
+  <path d="M4 8h4l3.5 8H16"/><path d="M15.5 5.3 18.7 8l-3.2 2.7"/><path d="M4 16h4l1.4-3.2"/><path d="M15.5 15.3 18.7 18l-3.2 2.7"/>
+{{- else if eq $name "guides" -}}
+  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5v-13Z"/>
+{{- end -}}
+</svg>

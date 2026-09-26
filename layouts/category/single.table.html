@@ -1,0 +1,6 @@
+{{- /* AJAX fragment: just the directory table for this category, used by the tab switcher. */ -}}
+{{- $slug := .File.ContentBaseName -}}
+{{- with site.GetPage "directory" -}}
+  {{- $matches := where .RegularPages "Params.categories" "intersect" (slice $slug) -}}
+  {{ partial "directory-table.html" $matches }}
+{{- end -}}

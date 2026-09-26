@@ -1,0 +1,28 @@
+{{- /* Call with a directory Page. Renders an icon-link row for whichever platforms are set
+      under its `social` front matter (all optional: twitter, linkedin, facebook, instagram).
+      Renders nothing if `social` is unset or empty. */ -}}
+{{- $social := .Params.social -}}
+{{- if $social -}}
+<div class="social-links">
+  {{- with $social.twitter -}}
+    <a class="social-link" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="X (Twitter) profile" title="X (Twitter)">
+      {{ partial "icon-x.html" }}
+    </a>
+  {{- end -}}
+  {{- with $social.linkedin -}}
+    <a class="social-link" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="LinkedIn profile" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 10v6.2M7.5 7.3v.1M11.5 16.2V10M11.5 12.5c0-1.4 1-2.5 2.4-2.5 1.3 0 2.1.9 2.1 2.6v3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  {{- end -}}
+  {{- with $social.facebook -}}
+    <a class="social-link" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="Facebook page" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h2.4l.4-3H14V9c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V11H8.5v3H11v7h3Z" fill="currentColor"/></svg>
+    </a>
+  {{- end -}}
+  {{- with $social.instagram -}}
+    <a class="social-link" href="{{ partial "utm-url.html" . }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="Instagram profile" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.9" cy="7.1" r="1" fill="currentColor"/></svg>
+    </a>
+  {{- end -}}
+</div>
+{{- end -}}

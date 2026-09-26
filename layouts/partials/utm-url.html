@@ -1,0 +1,11 @@
+{{- /* Call with an external URL string. Returns it with a utm_source=directory.surf query
+      param appended (using "&" instead of "?" if the URL already has a query string), so
+      outbound clicks are attributed back to this site in the destination's analytics.
+
+      Uses Hugo's `return` so this yields a raw string rather than rendered/escaped HTML --
+      otherwise the "&" separator would get HTML-escaped once here and again at the call
+      site when spliced into an href attribute. */ -}}
+{{- $url := . -}}
+{{- $sep := "?" -}}
+{{- if in $url "?" -}}{{- $sep = "&" -}}{{- end -}}
+{{- return (printf "%s%sutm_source=directory.surf" $url $sep) -}}

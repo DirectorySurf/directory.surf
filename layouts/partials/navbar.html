@@ -1,0 +1,78 @@
+{{- $path := .RelPermalink -}}
+<header class="navbar" id="top">
+  <div class="navbar-inner">
+    <a class="navbar-brand" href="{{ "/" | relURL }}">
+      <img class="navbar-brand-icon" src="{{ "img/logo.png" | relURL }}" width="30" height="30" alt="">
+      <span>{{ site.Title }}</span>
+    </a>
+
+    <button
+      type="button"
+      class="navbar-menu-toggle"
+      aria-expanded="false"
+      aria-controls="navbar-nav"
+      aria-label="Toggle navigation menu"
+      data-navbar-menu-toggle
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <nav class="navbar-nav" id="navbar-nav" aria-label="Primary" data-navbar-menu>
+      <a href="{{ "/" | relURL }}"{{ if .IsHome }} class="is-active" aria-current="page"{{ end }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 11.5 12 4l8 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>All directories</span>
+      </a>
+      <a href="{{ "/category/" | relURL }}"{{ if hasPrefix $path (relURL "/category/") }} class="is-active" aria-current="page"{{ end }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M11.3 3.7 4.6 10.4a2 2 0 0 0 0 2.8l6.2 6.2a2 2 0 0 0 2.8 0l6.7-6.7a2 2 0 0 0 .6-1.6l-.3-5.4a2 2 0 0 0-1.9-1.9l-5.4-.3a2 2 0 0 0-1.6.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="15.5" cy="8.5" r="1.4" fill="currentColor"/>
+        </svg>
+        <span>Categories</span>
+      </a>
+      <a href="{{ "/alternatives/" | relURL }}"{{ if hasPrefix $path (relURL "/alternatives/") }} class="is-active" aria-current="page"{{ end }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M17 3.5 20.5 7 17 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 7h17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M7 13.5 3.5 17 7 20.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.5 17h-17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>Alternatives</span>
+      </a>
+      <a href="{{ "/guides/" | relURL }}"{{ if hasPrefix $path (relURL "/guides/") }} class="is-active" aria-current="page"{{ end }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 5.5c2.2-1.3 5-1.3 7 0v13c-2-1.3-4.8-1.3-7 0v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M20 5.5c-2.2-1.3-5-1.3-7 0v13c2-1.3 4.8-1.3 7 0v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <span>Guides</span>
+      </a>
+      <a href="{{ "/saved/" | relURL }}"{{ if hasPrefix $path (relURL "/saved/") }} class="is-active" aria-current="page"{{ end }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 3.5h11a1 1 0 0 1 1 1V20l-6.5-4-6.5 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <span>Saved</span>
+        <span class="saved-count-badge" data-saved-count hidden></span>
+      </a>
+    </nav>
+
+    <div class="navbar-search" data-site-search data-index-url="{{ "/index.json" | relURL }}">
+      <svg class="navbar-search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="m20 20-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <input
+        type="search"
+        class="navbar-search-input"
+        placeholder="Search directories, guides…"
+        aria-label="Search directories, categories, guides and alternatives"
+        autocomplete="off"
+        data-site-search-input
+      />
+      <ul class="navbar-search-results" data-site-search-results hidden></ul>
+    </div>
+  </div>
+</header>

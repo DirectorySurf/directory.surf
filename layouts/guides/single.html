@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <article class="guide-page">
+    <header class="guide-page-header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.subtitle }}<p class="lede guide-subtitle">{{ . }}</p>{{ end }}
+    </header>
+
+    {{ $allDirs := slice }}
+    {{ range .Params.blocks }}
+      {{ if eq .type "h2" }}
+        <h2 class="guide-block-heading">{{ .text }}</h2>
+      {{ else if eq .type "p" }}
+        <div class="guide-block-text">{{ .text | markdownify }}</div>
+      {{ else if eq .type "directories" }}
+        {{ $dirs := slice }}
+        {{ range .slugs }}
+          {{ with site.GetPage (printf "/directory/%s" .) }}
+            {{ $dirs = $dirs | append . }}
+            {{ $allDirs = $allDirs | append . }}
+          {{ end }}
+        {{ end }}
+        {{ partial "directory-cards.html" $dirs }}
+      {{ end }}
+    {{ end }}
+
+    {{ partial "itemlist-schema.html" (dict "pages" $allDirs) }}
+  </article>
+{{ end }}

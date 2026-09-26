@@ -1,0 +1,12 @@
+{{- /* Call with a dict: {"pages": <Pages>}. Emits an ItemList matching exactly what's
+      rendered on the page, so it stays accurate as content changes. */ -}}
+{{- $pages := .pages -}}
+{{- if gt (len $pages) 0 -}}
+  {{- $items := slice -}}
+  {{- range $i, $p := $pages -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "name" $p.Title "url" $p.Permalink) -}}
+  {{- end -}}
+  <script type="application/ld+json">
+  {{ (dict "@context" "https://schema.org" "@type" "ItemList" "itemListElement" $items) | jsonify | safeJS }}
+  </script>
+{{- end -}}

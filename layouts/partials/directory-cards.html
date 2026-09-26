@@ -1,0 +1,32 @@
+{{- /* Call with a slice of directory Pages. Renders each as an embedded summary card. */ -}}
+{{- $pages := . -}}
+{{- if gt (len $pages) 0 -}}
+<div class="directory-cards">
+  {{- range $pages -}}
+    {{- $price := .Params.pricing -}}
+    <a class="directory-card" href="{{ .RelPermalink }}">
+      <div class="directory-card-header">
+        {{ partial "favicon-img.html" . }}
+        <span class="directory-card-title">{{ .Title }}</span>
+        <span class="directory-card-dr">DR {{ .Params.ahrefs_dr }}</span>
+        {{ partial "save-button.html" . }}
+      </div>
+      <p class="directory-card-desc">{{ .Params.description }}</p>
+      <div class="directory-card-meta">
+        {{ range .Params.categories }}
+          {{ with site.GetPage (printf "/category/%s" .) }}
+            {{ partial "category-badge.html" (dict "page" . "link" false) }}
+          {{ end }}
+        {{ end }}
+        {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+          <span class="badge badge-free">Free</span>
+        {{ else if $price.free_available }}
+          <span class="badge badge-free">Free tier</span>
+        {{ else }}
+          <span class="badge">From ${{ $price.starting_price }}/{{ $price.price_period }}</span>
+        {{ end }}
+      </div>
+    </a>
+  {{- end }}
+</div>
+{{- end -}}

@@ -1,0 +1,76 @@
+{{- /* Call with a dict: {"active": "" | "<category-slug>", "pages": <Pages to render initially>}.
+      Renders an "All" tab, one tab per featured category, and an overflow "More" menu for the
+      rest. Tabs are plain links (real pages, so they work with no JS); directory-tabs.js
+      progressively enhances clicks into a fetch() + pushState swap of the table only. */ -}}
+{{- $active := .active -}}
+{{- $initialPages := .pages -}}
+{{- $paginator := .paginator -}}
+{{- $allCategories := slice -}}
+{{- with site.GetPage "category" -}}
+  {{- $allCategories = .RegularPages.ByTitle -}}
+{{- end -}}
+{{- $featured := where $allCategories "Params.featured" true -}}
+{{- $overflow := where $allCategories "Params.featured" "!=" true -}}
+{{- $overflowActiveTitle := "" -}}
+{{- range $overflow -}}
+  {{- if eq $active .File.ContentBaseName -}}{{- $overflowActiveTitle = .Title -}}{{- end -}}
+{{- end -}}
+{{- $overflowActive := ne $overflowActiveTitle "" -}}
+<div class="directory-tabs" data-directory-tabs>
+  <div class="tab-list" role="tablist">
+    <a
+      role="tab"
+      class="tab-link{{ if eq $active "" }} is-active{{ end }}"
+      aria-selected="{{ if eq $active "" }}true{{ else }}false{{ end }}"
+      href="{{ "/" | relURL }}"
+      data-tab-link
+      data-tab-url="{{ "/" | relURL }}"
+      data-tab-fragment="{{ "/table.html" | relURL }}"
+    >All</a>
+    {{ range $featured }}
+      {{ $slug := .File.ContentBaseName }}
+      <a
+        role="tab"
+        class="tab-link{{ if eq $active $slug }} is-active{{ end }}"
+        aria-selected="{{ if eq $active $slug }}true{{ else }}false{{ end }}"
+        href="{{ .RelPermalink }}"
+        data-tab-link
+        data-tab-url="{{ .RelPermalink }}"
+        data-tab-fragment="{{ .RelPermalink }}table.html"
+      ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Title }}</a>
+    {{ end }}
+    {{ if $overflow }}
+      <div class="tab-more{{ if $overflowActive }} is-active{{ end }}" data-tab-more>
+        <button
+          type="button"
+          class="tab-more-toggle{{ if $overflowActive }} is-active{{ end }}"
+          aria-haspopup="true"
+          aria-expanded="false"
+          data-tab-more-toggle
+        >
+          <span data-tab-more-label data-tab-more-default="More">{{ if $overflowActive }}{{ $overflowActiveTitle }}{{ else }}More{{ end }}</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="tab-more-icon">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="tab-more-menu" data-tab-more-menu hidden role="menu">
+          {{ range $overflow }}
+            {{ $slug := .File.ContentBaseName }}
+            <a
+              role="menuitem"
+              class="tab-more-item{{ if eq $active $slug }} is-active{{ end }}"
+              href="{{ .RelPermalink }}"
+              data-tab-link
+              data-tab-url="{{ .RelPermalink }}"
+              data-tab-fragment="{{ .RelPermalink }}table.html"
+            ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Title }}</a>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+  <div class="tab-panel" data-tab-panel>
+    {{ partial "directory-table.html" $initialPages }}
+    {{ with $paginator }}{{ partial "pagination.html" . }}{{ end }}
+  </div>
+</div>

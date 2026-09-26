@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "navbar.html" . }}
+  <div class="page-body">
+    <main class="content">
+      <div class="content-inner">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </main>
+    {{ partial "sidebar.html" . }}
+  </div>
+  {{ partial "footer.html" . }}
+  <script src="{{ "js/sortable-table.js" | relURL }}" defer></script>
+  <script src="{{ "js/saved-directories.js" | relURL }}" defer></script>
+  <script src="{{ "js/directory-tabs.js" | relURL }}" defer></script>
+  <script src="{{ "js/site-search.js" | relURL }}" defer></script>
+  <script src="{{ "js/navbar-menu.js" | relURL }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ partial "itemlist-schema.html" (dict "pages" .RegularPages.ByTitle) }}
+  <ul class="guide-index">
+    {{ range .RegularPages.ByTitle }}
+      <li>
+        <a class="guide-index-card" href="{{ .RelPermalink }}">
+          <h2>{{ .Title }}</h2>
+          {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

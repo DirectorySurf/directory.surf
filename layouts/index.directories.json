@@ -1,0 +1,29 @@
+{{- /* Full directory dataset for client-side rendering (the /saved/ page). Keep the fields in
+      sync with what static/js/saved-directories.js's buildCard() renders. */ -}}
+{{- $items := slice -}}
+{{- with site.GetPage "directory" -}}
+  {{- range .RegularPages.ByTitle -}}
+    {{- $categories := slice -}}
+    {{- range .Params.categories -}}
+      {{- with site.GetPage (printf "/category/%s" .) -}}
+        {{- $categories = $categories | append (dict
+          "slug" .File.ContentBaseName
+          "title" .Title
+          "url" .RelPermalink
+          "icon" (partial "category-icon.html" .)
+        ) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $items = $items | append (dict
+      "slug" .File.ContentBaseName
+      "title" .Title
+      "url" .RelPermalink
+      "website" .Params.website
+      "description" .Params.description
+      "ahrefs_dr" .Params.ahrefs_dr
+      "pricing" .Params.pricing
+      "categories" $categories
+    ) -}}
+  {{- end -}}
+{{- end -}}
+{{ jsonify $items }}

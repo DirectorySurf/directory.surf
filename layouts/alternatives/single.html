@@ -1,0 +1,21 @@
+{{ define "main" }}
+  {{ $subject := site.GetPage (printf "/directory/%s" .Params.directory) }}
+  <h1>{{ .Title }}</h1>
+  {{ with $subject }}
+    <p class="lede">Directories similar to <a href="{{ .RelPermalink }}">{{ .Title }}</a>, hand-picked.</p>
+  {{ end }}
+
+  {{ $alts := slice }}
+  {{ range .Params.alternatives }}
+    {{ with site.GetPage (printf "/directory/%s" .) }}
+      {{ $alts = $alts | append . }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $alts }}
+    {{ partial "directory-table.html" $alts }}
+    {{ partial "itemlist-schema.html" (dict "pages" $alts) }}
+  {{ else }}
+    <p>No alternatives listed yet.</p>
+  {{ end }}
+{{ end }}

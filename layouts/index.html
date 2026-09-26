@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <h1>All directories</h1>
+  <p class="lede">{{ site.Params.description }}</p>
+  {{ with site.GetPage "directory" }}
+    {{ $paginator := $.Paginate .RegularPages }}
+    {{ partial "directory-tabs.html" (dict "active" "" "pages" $paginator.Pages "paginator" $paginator) }}
+    {{ partial "itemlist-schema.html" (dict "pages" $paginator.Pages) }}
+  {{ end }}
+{{ end }}

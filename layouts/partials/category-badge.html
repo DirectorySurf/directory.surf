@@ -1,0 +1,12 @@
+{{- /* Call with a dict: {"page": <category Page>, "link": bool (default true)}.
+       Renders a small pill with the category's icon + title. Pass "link": false when the
+       badge is already inside an anchor (e.g. a full directory-card link) to avoid nesting
+       <a> elements. */ -}}
+{{- $cat := .page -}}
+{{- $link := true -}}
+{{- if isset . "link" -}}{{- $link = .link -}}{{- end -}}
+{{- if $link -}}
+<a class="badge badge-category" href="{{ $cat.RelPermalink }}"><span class="badge-icon">{{ partial "category-icon.html" $cat }}</span>{{ $cat.Title }}</a>
+{{- else -}}
+<span class="badge badge-category"><span class="badge-icon">{{ partial "category-icon.html" $cat }}</span>{{ $cat.Title }}</span>
+{{- end -}}

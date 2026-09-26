@@ -1,0 +1,19 @@
+{{- $current := . -}}
+<aside class="sidebar" aria-label="Categories">
+  <span class="sidebar-heading">Categories</span>
+  <ul class="sidebar-list">
+    <li>
+      <a class="sidebar-link{{ if or $current.IsHome (eq $current.Section "directory") }} is-current{{ end }}" href="{{ "/" | relURL }}">All directories</a>
+    </li>
+    {{ with site.GetPage "category" }}
+      {{ range .RegularPages.ByTitle }}
+        <li>
+          <a class="sidebar-link{{ if eq $current.RelPermalink .RelPermalink }} is-current{{ end }}" href="{{ .RelPermalink }}">
+            <span class="sidebar-link-icon">{{ partial "category-icon.html" . }}</span>
+            {{ .Title }}
+          </a>
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</aside>

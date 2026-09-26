@@ -1,0 +1,7 @@
+/public/
+/resources/
+/.hugo_build.lock
+
+__pycache__/
+*.pyc
+.venv/

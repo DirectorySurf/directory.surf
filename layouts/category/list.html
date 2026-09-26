@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <h1>Categories</h1>
+  {{ with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ partial "itemlist-schema.html" (dict "pages" .RegularPages.ByTitle) }}
+  <ul class="category-list">
+    {{ range .RegularPages.ByTitle }}
+      {{ $cat := . }}
+      {{ $slug := .File.ContentBaseName }}
+      {{ $dirPages := slice }}
+      {{ with site.GetPage "directory" }}
+        {{ $dirPages = (where .RegularPages "Params.categories" "intersect" (slice $slug)).ByTitle }}
+      {{ end }}
+      {{ $count := len $dirPages }}
+      {{ $preview := first 10 $dirPages }}
+      <li class="category-row">
+        <a class="category-row-link" href="{{ $cat.RelPermalink }}">
+          <span class="category-row-icon">{{ partial "category-icon.html" $cat }}</span>
+          <span class="category-row-info">
+            <h2>{{ $cat.Title }}</h2>
+            <p>{{ $cat.Params.description }}</p>
+            <span class="category-count">{{ $count }} director{{ if eq $count 1 }}y{{ else }}ies{{ end }}</span>
+          </span>
+        </a>
+        {{ if gt (len $preview) 0 }}
+          <ul class="category-row-directories">
+            {{ range $preview }}
+              <li>
+                <a class="category-directory-icon" href="{{ .RelPermalink }}" title="{{ .Title }}">
+                  {{ partial "favicon-img.html" . }}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

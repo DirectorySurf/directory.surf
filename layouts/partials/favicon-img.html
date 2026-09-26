@@ -1,0 +1,14 @@
+{{- /* Call with a directory Page (renders the standard 16px favicon), or a dict
+      {"page": <Page>, "size": <int px>} for a larger rendering (e.g. the directory
+      page's hero logo). "size" only changes the requested/displayed pixel size, not
+      the underlying favicon source. */ -}}
+{{- $page := . -}}
+{{- $size := 16 -}}
+{{- if reflect.IsMap . -}}
+  {{- $page = .page -}}
+  {{- if isset . "size" -}}{{- $size = .size -}}{{- end -}}
+{{- end -}}
+{{- $host := (urls.Parse $page.Params.website).Host -}}
+{{- $fetchSize := 64 -}}
+{{- if gt $size 64 -}}{{- $fetchSize = 128 -}}{{- end -}}
+<img class="favicon" src="https://www.google.com/s2/favicons?sz={{ $fetchSize }}&domain={{ $host }}" alt="" width="{{ $size }}" height="{{ $size }}" loading="lazy">

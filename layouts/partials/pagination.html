@@ -1,0 +1,36 @@
+{{- /* Call with a *Pager (the result of .Paginate). Renders Prev/page-number/Next controls
+      for the home directory table, 25 rows per page. Links are plain <a> (work with no JS,
+      and each page/N/ is a real static page so it's reachable directly); directory-tabs.js
+      progressively enhances clicks into a fetch() + pushState swap of the table only.
+
+      Pager.URL is relative to whichever output format is currently rendering, so when this
+      partial runs inside the "table.html" AJAX fragment it comes back as ".../table.html"
+      instead of the page's real HTML URL. Trim that suffix (a no-op in the HTML template,
+      where it isn't present) so href/data-page-url always land on the canonical page. */ -}}
+{{- $paginator := . -}}
+{{- if gt $paginator.TotalPages 1 -}}
+<nav class="pagination" aria-label="Directory pages" data-pagination>
+  {{- if $paginator.HasPrev -}}
+    {{- $url := strings.TrimSuffix "table.html" $paginator.Prev.URL -}}
+    <a class="pagination-link pagination-prev" rel="prev" href="{{ $url }}" data-page-link data-page-url="{{ $url }}" data-page-fragment="{{ $url }}table.html">← Prev</a>
+  {{- else -}}
+    <span class="pagination-link pagination-prev is-disabled" aria-disabled="true">← Prev</span>
+  {{- end }}
+  <span class="pagination-pages">
+    {{- range $paginator.Pagers -}}
+      {{- $url := strings.TrimSuffix "table.html" .URL -}}
+      {{- if eq .PageNumber $paginator.PageNumber -}}
+        <span class="pagination-link is-active" aria-current="page">{{ .PageNumber }}</span>
+      {{- else -}}
+        <a class="pagination-link" href="{{ $url }}" data-page-link data-page-url="{{ $url }}" data-page-fragment="{{ $url }}table.html">{{ .PageNumber }}</a>
+      {{- end -}}
+    {{- end -}}
+  </span>
+  {{- if $paginator.HasNext -}}
+    {{- $url := strings.TrimSuffix "table.html" $paginator.Next.URL -}}
+    <a class="pagination-link pagination-next" rel="next" href="{{ $url }}" data-page-link data-page-url="{{ $url }}" data-page-fragment="{{ $url }}table.html">Next →</a>
+  {{- else -}}
+    <span class="pagination-link pagination-next is-disabled" aria-disabled="true">Next →</span>
+  {{- end }}
+</nav>
+{{- end -}}

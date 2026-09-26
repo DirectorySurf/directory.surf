@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <h1>Alternatives</h1>
+  <p class="lede">Hand-picked alternatives for each directory listed on this site.</p>
+  {{ partial "itemlist-schema.html" (dict "pages" .RegularPages.ByTitle) }}
+  <ul class="plain-list">
+    {{ range .RegularPages.ByTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
+
+  <div data-saved-list data-index-url="{{ "/directories.json" | relURL }}"></div>
+
+  <p class="table-empty" data-saved-empty hidden>
+    You haven't saved any directories yet. Click the bookmark icon on any directory to save it
+    here for quick, offline access -- saved directories live only in this browser, there's no
+    account involved. <a href="{{ "/" | relURL }}">Browse all directories →</a>
+  </p>
+{{ end }}

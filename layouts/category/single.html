@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <header class="category-page-header">
+    <span class="category-page-icon">{{ partial "category-icon.html" . }}</span>
+    <h1>{{ .Title }}</h1>
+  </header>
+  {{ with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ .Content }}
+  {{ $slug := .File.ContentBaseName }}
+  {{ with site.GetPage "directory" }}
+    {{ $matches := where .RegularPages "Params.categories" "intersect" (slice $slug) }}
+    {{ partial "directory-tabs.html" (dict "active" $slug "pages" $matches) }}
+    {{ if $matches }}
+      {{ partial "itemlist-schema.html" (dict "pages" $matches) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
