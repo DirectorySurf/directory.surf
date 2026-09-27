@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free listing and buyer consultation; paid lead-gen plans for vendors."
-ahrefs_dr: 0
+ahrefs_dr: 78
 founded: 2014-01-01
 ---
 

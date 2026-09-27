@@ -1,14 +1,14 @@
 ---
 title: "SourceForge"
 website: "https://sourceforge.net"
-categories: ["saas-directory", "software-reviews"]
+categories: ["saas-directory", "software-reviews", "open-source-directory"]
 description: "One of the longest-running software directories, now covering commercial SaaS alongside its open-source roots."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for lead generation and featured placement."
-ahrefs_dr: 0
+ahrefs_dr: 93
 founded: 1999-01-01
 ---
 

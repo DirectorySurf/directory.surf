@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free submissions; paid 'featured' and 'premium' listing tiers."
-ahrefs_dr: 0
+ahrefs_dr: 72
 founded: 2022-12-01
 ---
 

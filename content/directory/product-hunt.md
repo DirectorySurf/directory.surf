@@ -1,14 +1,14 @@
 ---
 title: "Product Hunt"
 website: "https://www.producthunt.com"
-categories: ["saas-directory"]
+categories: ["launch-platforms", "app-directory"]
 description: "A daily launchpad where makers post new products and the community upvotes and discusses them."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free to launch and browse; paid promotional add-ons for extra visibility."
-ahrefs_dr: 0
+ahrefs_dr: 91
 founded: 2013-11-01
 ---
 

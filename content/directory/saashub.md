@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid promoted placement for vendors."
-ahrefs_dr: 0
+ahrefs_dr: 80
 founded: 2017-01-01
 ---
 

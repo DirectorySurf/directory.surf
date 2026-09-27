@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and submit; paid featured/sponsored placement."
-ahrefs_dr: 0
+ahrefs_dr: 69
 founded: 2023-02-01
 ---
 

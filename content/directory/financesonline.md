@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid vendor plans for premium placement and badges."
-ahrefs_dr: 0
+ahrefs_dr: 87
 founded: 2013-01-01
 ---
 

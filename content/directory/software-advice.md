@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid lead-generation plans for vendors."
-ahrefs_dr: 0
+ahrefs_dr: 87
 founded: 2005-01-01
 ---
 

@@ -1,8 +1,207 @@
-# Month-to-month Ahrefs Domain Rating history, keyed by content/directory/<slug>.md.
-# Populated and updated automatically by scripts/fetch_dr.py -- don't hand-edit the
-# per-month entries, since it's rewritten (and re-sorted) on every run.
-#
-# Shape:
-#   <slug>:
-#     - date: "YYYY-MM-01"
-#       dr: <int>
+ai-tool-hunt:
+- date: '2026-09-01'
+  dr: 55
+aiagentsdirectory:
+- date: '2026-09-01'
+  dr: 75
+aiagentslist:
+- date: '2026-09-01'
+  dr: 36
+aitoptools:
+- date: '2026-09-01'
+  dr: 56
+aixploria:
+- date: '2026-09-01'
+  dr: 56
+allthingsai:
+- date: '2026-09-01'
+  dr: 46
+altern:
+- date: '2026-09-01'
+  dr: 52
+alternativeto:
+- date: '2026-09-01'
+  dr: 81
+apkpure:
+- date: '2026-09-01'
+  dr: 85
+appsumo:
+- date: '2026-09-01'
+  dr: 83
+behance:
+- date: '2026-09-01'
+  dr: 94
+betalist:
+- date: '2026-09-01'
+  dr: 77
+capterra:
+- date: '2026-09-01'
+  dr: 91
+clutch:
+- date: '2026-09-01'
+  dr: 91
+coingecko:
+- date: '2026-09-01'
+  dr: 90
+coinmarketcap:
+- date: '2026-09-01'
+  dr: 90
+crozdesk:
+- date: '2026-09-01'
+  dr: 74
+crunchbase:
+- date: '2026-09-01'
+  dr: 91
+dang-ai:
+- date: '2026-09-01'
+  dr: 82
+dev-to:
+- date: '2026-09-01'
+  dr: 91
+dribbble:
+- date: '2026-09-01'
+  dr: 93
+easy-with-ai:
+- date: '2026-09-01'
+  dr: 60
+f-droid:
+- date: '2026-09-01'
+  dr: 85
+f6s:
+- date: '2026-09-01'
+  dr: 83
+fazier:
+- date: '2026-09-01'
+  dr: 83
+financesonline:
+- date: '2026-09-01'
+  dr: 87
+futurepedia:
+- date: '2026-09-01'
+  dr: 72
+futuretools:
+- date: '2026-09-01'
+  dr: 69
+g2:
+- date: '2026-09-01'
+  dr: 91
+gartner-peer-insights:
+- date: '2026-09-01'
+  dr: 92
+getapp:
+- date: '2026-09-01'
+  dr: 85
+goodfirms:
+- date: '2026-09-01'
+  dr: 86
+growthhackers:
+- date: '2026-09-01'
+  dr: 77
+hacker-news:
+- date: '2026-09-01'
+  dr: 91
+inboxreads:
+- date: '2026-09-01'
+  dr: 46
+indie-hackers:
+- date: '2026-09-01'
+  dr: 81
+insidr-ai:
+- date: '2026-09-01'
+  dr: 48
+letterlist:
+- date: '2026-09-01'
+  dr: 41
+libhunt:
+- date: '2026-09-01'
+  dr: 66
+mcp-so:
+- date: '2026-09-01'
+  dr: 73
+nocode-tech:
+- date: '2026-09-01'
+  dr: 65
+open-source-alternative:
+- date: '2026-09-01'
+  dr: 49
+opentools:
+- date: '2026-09-01'
+  dr: 70
+peerlist:
+- date: '2026-09-01'
+  dr: 77
+peerspot:
+- date: '2026-09-01'
+  dr: 75
+phygital-plus:
+- date: '2026-09-01'
+  dr: 46
+product-hunt:
+- date: '2026-09-01'
+  dr: 91
+programmableweb:
+- date: '2026-09-01'
+  dr: 77
+pulsemcp:
+- date: '2026-09-01'
+  dr: 71
+rapidapi:
+- date: '2026-09-01'
+  dr: 83
+saashub:
+- date: '2026-09-01'
+  dr: 80
+saasworthy:
+- date: '2026-09-01'
+  dr: 75
+serchen:
+- date: '2026-09-01'
+  dr: 67
+slant:
+- date: '2026-09-01'
+  dr: 69
+smithery:
+- date: '2026-09-01'
+  dr: 79
+software-advice:
+- date: '2026-09-01'
+  dr: 87
+softwaresuggest:
+- date: '2026-09-01'
+  dr: 78
+sourceforge:
+- date: '2026-09-01'
+  dr: 93
+spiceworks:
+- date: '2026-09-01'
+  dr: 87
+stackshare:
+- date: '2026-09-01'
+  dr: 78
+theres-an-ai-for-that:
+- date: '2026-09-01'
+  dr: 77
+tinylaunch:
+- date: '2026-09-01'
+  dr: 74
+toolify:
+- date: '2026-09-01'
+  dr: 73
+topai-tools:
+- date: '2026-09-01'
+  dr: 64
+trustpilot:
+- date: '2026-09-01'
+  dr: 94
+trustradius:
+- date: '2026-09-01'
+  dr: 85
+uneed:
+- date: '2026-09-01'
+  dr: 76
+wellfound:
+- date: '2026-09-01'
+  dr: 87
+zapier-app-directory:
+- date: '2026-09-01'
+  dr: 91

@@ -1,14 +1,14 @@
 ---
 title: "Zapier App Directory"
 website: "https://zapier.com/apps"
-categories: ["saas-directory"]
+categories: ["saas-directory", "app-directory", "no-code-directory"]
 description: "Zapier's directory of thousands of integrable apps, doubling as a discovery tool for automation-friendly SaaS."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free to browse; listing tied to building a Zapier integration rather than a paid placement fee."
-ahrefs_dr: 0
+ahrefs_dr: 91
 founded: 2012-01-01
 ---
 

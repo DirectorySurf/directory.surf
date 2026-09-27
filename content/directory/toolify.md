@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for faster review and featured placement."
-ahrefs_dr: 0
+ahrefs_dr: 73
 founded: 2023-02-01
 ---
 

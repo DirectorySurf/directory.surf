@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free to read; vendor participation and review-response tools tied to Gartner relationships."
-ahrefs_dr: 0
+ahrefs_dr: 92
 founded: 2015-01-01
 ---
 

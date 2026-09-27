@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free to read reviews with registration; paid vendor plans for enhanced profiles and reports."
-ahrefs_dr: 0
+ahrefs_dr: 75
 founded: 2012-01-01
 ---
 

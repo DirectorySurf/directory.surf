@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free profile; paid sponsorship plans for boosted visibility."
-ahrefs_dr: 0
+ahrefs_dr: 91
 founded: 2013-01-01
 ---
 

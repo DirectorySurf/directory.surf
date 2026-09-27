@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free to submit a tool; paid options available for featured placement."
-ahrefs_dr: 0
+ahrefs_dr: 52
 founded: 2023-01-01
 ---
 

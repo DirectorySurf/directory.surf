@@ -1,14 +1,14 @@
 ---
 title: "Slant"
 website: "https://www.slant.co"
-categories: ["saas-directory"]
+categories: ["saas-directory", "alternatives", "tools-directory"]
 description: "A Q&A-style comparison site where the community debates the best tool for a given need, pro/con style."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free to use; no paid vendor tier."
-ahrefs_dr: 0
+ahrefs_dr: 69
 founded: 2014-01-01
 ---
 

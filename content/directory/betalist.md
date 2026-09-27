@@ -1,14 +1,14 @@
 ---
 title: "BetaList"
 website: "https://betalist.com"
-categories: ["saas-directory"]
+categories: ["launch-platforms", "startup-directory"]
 description: "A directory of early-stage startups and products still in beta, used by founders to get first users."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free waitlist submission; paid plans for guaranteed or featured launches."
-ahrefs_dr: 0
+ahrefs_dr: 77
 founded: 2011-01-01
 ---
 

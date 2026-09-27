@@ -57,8 +57,9 @@
     syncNavCount();
   }
 
-  // Mirrors layouts/partials/save-button.html so cards rendered here client-side (on /saved/)
-  // get the same toggle the server-rendered cards/table/directory page use.
+  // Mirrors layouts/partials/save-button.html so cards/rows rendered client-side here and in
+  // directory-tabs.js's table search results get the same toggle as server-rendered pages.
+  // Exposed on window.SavedDirectories so directory-tabs.js doesn't need its own copy.
   function buildSaveButton(slug, title) {
     var btn = document.createElement("button");
     btn.type = "button";
@@ -223,5 +224,11 @@
     renderSavedPage();
   });
 
-  window.SavedDirectories = { list: list, has: has, toggle: toggle, sync: sync };
+  window.SavedDirectories = {
+    list: list,
+    has: has,
+    toggle: toggle,
+    sync: sync,
+    buildSaveButton: buildSaveButton,
+  };
 })();

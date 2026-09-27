@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free basic listing; paid options for featured/priority placement."
-ahrefs_dr: 0
+ahrefs_dr: 77
 founded: 2022-11-01
 ---
 

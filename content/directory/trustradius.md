@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free product profile; paid vendor plans for lead access and profile enhancements."
-ahrefs_dr: 0
+ahrefs_dr: 85
 founded: 2012-01-01
 ---
 

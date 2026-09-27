@@ -1,14 +1,14 @@
 ---
 title: "StackShare"
 website: "https://stackshare.io"
-categories: ["saas-directory"]
+categories: ["saas-directory", "tools-directory", "dev-community"]
 description: "A directory of developer tools and infrastructure organized around the tech stacks companies actually use."
 pricing:
   free_available: true
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and post stacks; paid options for vendor visibility."
-ahrefs_dr: 0
+ahrefs_dr: 78
 founded: 2014-01-01
 ---
 

@@ -8,7 +8,7 @@ pricing:
   starting_price: 0
   price_period: "month"
   notes: "Free profile; paid plans for review-management and marketing tools."
-ahrefs_dr: 0
+ahrefs_dr: 94
 founded: 2007-01-01
 ---
 
