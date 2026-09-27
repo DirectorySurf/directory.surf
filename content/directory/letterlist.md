@@ -4,7 +4,8 @@ website: "https://letterlist.com"
 categories: ["newsletter-directory"]
 description: "A curated directory of independent newsletters across topics like startups, design, and marketing."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free submission and browsing."

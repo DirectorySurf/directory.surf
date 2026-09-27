@@ -4,7 +4,8 @@ website: "https://www.f6s.com"
 categories: ["founders-directory", "startup-directory"]
 description: "A global platform connecting startup founders with accelerators, investors, grants, and perks."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free founder profiles and program applications; accelerators and partners pay for premium placement."

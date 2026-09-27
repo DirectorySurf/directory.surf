@@ -4,7 +4,8 @@ website: "https://apkpure.com"
 categories: ["app-directory"]
 description: "An alternative Android app store and directory offering APK downloads outside of Google Play."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and download; no listing fee for developers."

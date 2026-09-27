@@ -4,10 +4,11 @@ website: "https://www.futuretools.io"
 categories: ["ai-directory"]
 description: "A hand-curated AI tools directory run by YouTuber Matt Wolfe, with a daily-updated news feed alongside listings."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
-  notes: "Free to browse and submit; paid featured/sponsored placement."
+  notes: "Free but selective submissions (high rejection rate); revenue comes from newsletter/YouTube sponsorships, not listing fees."
 ahrefs_dr: 69
 founded: 2023-02-01
 ---

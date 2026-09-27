@@ -4,7 +4,8 @@ website: "https://crozdesk.com"
 categories: ["saas-directory"]
 description: "A B2B software marketplace that pairs a searchable directory with free vendor-matching advisory calls."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing and advisory service for buyers; paid lead-gen plans for vendors."

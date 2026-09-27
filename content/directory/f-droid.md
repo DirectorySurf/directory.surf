@@ -4,7 +4,8 @@ website: "https://f-droid.org"
 categories: ["app-directory", "open-source-directory"]
 description: "A catalog and installable app store for free and open-source Android applications."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Entirely free and non-commercial; no paid listings."

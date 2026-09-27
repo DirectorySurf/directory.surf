@@ -4,7 +4,8 @@ website: "https://allthingsai.com"
 categories: ["ai-directory"]
 description: "A curated AI tools directory organized by use case, with short write-ups for each listed tool."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid featured placement for vendors."

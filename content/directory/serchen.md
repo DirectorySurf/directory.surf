@@ -4,7 +4,8 @@ website: "https://www.serchen.com"
 categories: ["saas-directory"]
 description: "A B2B business software directory organized around ranked category listings and vendor comparisons."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid featured placement for vendors."

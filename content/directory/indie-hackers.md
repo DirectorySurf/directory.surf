@@ -4,7 +4,8 @@ website: "https://www.indiehackers.com"
 categories: ["startup-community", "dev-community"]
 description: "A community where independent founders share revenue numbers, growth tactics, and progress on bootstrapped products."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to join; owned by Stripe, no paid membership tier."

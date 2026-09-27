@@ -4,7 +4,8 @@ website: "https://rapidapi.com"
 categories: ["api-directory"]
 description: "The largest API marketplace, letting developers discover, test, and connect to thousands of public and private APIs in one place."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and use most APIs; individual API providers set their own pricing on top of the marketplace."

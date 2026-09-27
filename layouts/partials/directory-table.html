@@ -6,10 +6,10 @@
   <table data-sortable>
     <thead>
       <tr>
-        <th data-sort-type="text"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Directory</th>
-        <th data-sort-type="number"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 3H6a1 1 0 0 0-1 1v6.6a1 1 0 0 0 .29.71l8.4 8.4a1 1 0 0 0 1.42 0l6.6-6.6a1 1 0 0 0 0-1.42l-8.4-8.4A1 1 0 0 0 12.6 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor"/></svg>Pricing</th>
-        <th data-sort-type="number"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19v-6M11 19V7M17 19v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ahrefs DR</th>
-        <th data-sort-type="date"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Founded</th>
+        <th data-sort-type="text" data-sort-field="title"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Directory</th>
+        <th data-sort-type="number" data-sort-field="price"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 3H6a1 1 0 0 0-1 1v6.6a1 1 0 0 0 .29.71l8.4 8.4a1 1 0 0 0 1.42 0l6.6-6.6a1 1 0 0 0 0-1.42l-8.4-8.4A1 1 0 0 0 12.6 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor"/></svg>Pricing</th>
+        <th data-sort-type="number" data-sort-field="dr"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19v-6M11 19V7M17 19v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ahrefs DR</th>
+        <th data-sort-type="date" data-sort-field="founded"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Founded</th>
       </tr>
     </thead>
     <tbody>
@@ -31,10 +31,10 @@
             </div>
           </td>
           <td data-sort-value="{{ $price.starting_price }}">
-            {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+            {{ if and $price.free_submit (not $price.require_badge) }}
               <span class="badge badge-free">Free</span>
-            {{ else if $price.free_available }}
-              <span class="badge badge-free">Free tier</span> + from ${{ $price.starting_price }}/{{ $price.price_period }}
+            {{ else if $price.free_submit }}
+              <span class="badge badge-free">Free/Badge</span>
             {{ else }}
               From ${{ $price.starting_price }}/{{ $price.price_period }}
             {{ end }}

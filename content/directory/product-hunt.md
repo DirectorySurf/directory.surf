@@ -4,7 +4,8 @@ website: "https://www.producthunt.com"
 categories: ["launch-platforms", "app-directory"]
 description: "A daily launchpad where makers post new products and the community upvotes and discusses them."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to launch and browse; paid promotional add-ons for extra visibility."

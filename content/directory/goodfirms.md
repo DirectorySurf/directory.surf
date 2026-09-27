@@ -4,7 +4,8 @@ website: "https://www.goodfirms.co"
 categories: ["saas-directory", "software-reviews"]
 description: "A research and review platform covering both software products and the IT/agency firms that build them."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid premium profiles for vendors and agencies."

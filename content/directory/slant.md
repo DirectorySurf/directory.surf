@@ -4,7 +4,8 @@ website: "https://www.slant.co"
 categories: ["saas-directory", "alternatives", "tools-directory"]
 description: "A Q&A-style comparison site where the community debates the best tool for a given need, pro/con style."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to use; no paid vendor tier."

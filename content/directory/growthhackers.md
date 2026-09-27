@@ -4,10 +4,11 @@ website: "https://growthhackers.com"
 categories: ["marketing-community"]
 description: "A community and knowledge hub for growth marketers to share tactics, case studies, and growth-hacking methodology."
 pricing:
-  free_available: true
-  starting_price: 0
-  price_period: "month"
-  notes: "Free resources and forum access; paid courses and event/conference tickets."
+  free_submit: true
+  require_badge: false
+  starting_price: 96
+  price_period: "year"
+  notes: "Free community access; paid Basic (~$96/yr) and Agency (~$135/yr) memberships, plus paid courses."
 ahrefs_dr: 77
 founded: 2012-01-01
 ---

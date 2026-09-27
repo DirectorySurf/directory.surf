@@ -1,15 +1,54 @@
+agenthunter:
+- date: '2026-09-01'
+  dr: 64
+ai-agents-directory-com:
+- date: '2026-09-01'
+  dr: 8
 ai-tool-hunt:
 - date: '2026-09-01'
   dr: 55
+aiagents-directory:
+- date: '2026-09-01'
+  dr: 14
+aiagentsbase:
+- date: '2026-09-01'
+  dr: 3
 aiagentsdirectory:
 - date: '2026-09-01'
   dr: 75
 aiagentslist:
 - date: '2026-09-01'
   dr: 36
+aiagentslive:
+- date: '2026-09-01'
+  dr: 25
+aiagentstore-ai:
+- date: '2026-09-01'
+  dr: 54
+aiagentstore-io:
+- date: '2026-09-01'
+  dr: 1
+aichief:
+- date: '2026-09-01'
+  dr: 56
+aiparabellum:
+- date: '2026-09-01'
+  dr: 34
+aiscout:
+- date: '2026-09-01'
+  dr: 42
+aitoolsdirectory-com:
+- date: '2026-09-01'
+  dr: 50
+aitoolsguide:
+- date: '2026-09-01'
+  dr: 23
 aitoptools:
 - date: '2026-09-01'
   dr: 56
+aivalley:
+- date: '2026-09-01'
+  dr: 33
 aixploria:
 - date: '2026-09-01'
   dr: 56
@@ -19,24 +58,60 @@ allthingsai:
 altern:
 - date: '2026-09-01'
   dr: 52
+alternative-me:
+- date: '2026-09-01'
+  dr: 75
 alternativeto:
 - date: '2026-09-01'
   dr: 81
+any-api:
+- date: '2026-09-01'
+  dr: 46
+apis-guru:
+- date: '2026-09-01'
+  dr: 70
+apislist:
+- date: '2026-09-01'
+  dr: 16
+apkmirror:
+- date: '2026-09-01'
+  dr: 78
 apkpure:
 - date: '2026-09-01'
   dr: 85
 appsumo:
 - date: '2026-09-01'
   dr: 83
+aptoide:
+- date: '2026-09-01'
+  dr: 77
+atlassian-marketplace:
+- date: '2026-09-01'
+  dr: 92
+aws-marketplace:
+- date: '2026-09-01'
+  dr: 96
+awwwards:
+- date: '2026-09-01'
+  dr: 89
 behance:
 - date: '2026-09-01'
   dr: 94
 betalist:
 - date: '2026-09-01'
   dr: 77
+betapage:
+- date: '2026-09-01'
+  dr: 53
+builtwith:
+- date: '2026-09-01'
+  dr: 87
 capterra:
 - date: '2026-09-01'
   dr: 91
+chrome-web-store:
+- date: '2026-09-01'
+  dr: 100
 clutch:
 - date: '2026-09-01'
   dr: 91
@@ -46,24 +121,57 @@ coingecko:
 coinmarketcap:
 - date: '2026-09-01'
   dr: 90
+coroflot:
+- date: '2026-09-01'
+  dr: 79
 crozdesk:
 - date: '2026-09-01'
   dr: 74
 crunchbase:
 - date: '2026-09-01'
   dr: 91
+crypto-tools-directory:
+- date: '2026-09-01'
+  dr: 0
+cryptorank:
+- date: '2026-09-01'
+  dr: 76
+cryptoslate:
+- date: '2026-09-01'
+  dr: 79
 dang-ai:
 - date: '2026-09-01'
   dr: 82
+dappradar:
+- date: '2026-09-01'
+  dr: 78
+dealroom:
+- date: '2026-09-01'
+  dr: 78
 dev-to:
 - date: '2026-09-01'
   dr: 91
+devhunt:
+- date: '2026-09-01'
+  dr: 65
+deviantart:
+- date: '2026-09-01'
+  dr: 91
+digital-point:
+- date: '2026-09-01'
+  dr: 75
+domore-ai:
+- date: '2026-09-01'
+  dr: 27
 dribbble:
 - date: '2026-09-01'
   dr: 93
 easy-with-ai:
 - date: '2026-09-01'
   dr: 60
+eliteai-tools:
+- date: '2026-09-01'
+  dr: 39
 f-droid:
 - date: '2026-09-01'
   dr: 85
@@ -76,6 +184,12 @@ fazier:
 financesonline:
 - date: '2026-09-01'
   dr: 87
+find-your-newsletter:
+- date: '2026-09-01'
+  dr: 33
+founders-network:
+- date: '2026-09-01'
+  dr: 54
 futurepedia:
 - date: '2026-09-01'
   dr: 72
@@ -91,15 +205,30 @@ gartner-peer-insights:
 getapp:
 - date: '2026-09-01'
   dr: 85
+getlatka:
+- date: '2026-09-01'
+  dr: 72
+glama:
+- date: '2026-09-01'
+  dr: 75
 goodfirms:
 - date: '2026-09-01'
   dr: 86
+google-workspace-marketplace:
+- date: '2026-09-01'
+  dr: 100
 growthhackers:
 - date: '2026-09-01'
   dr: 77
 hacker-news:
 - date: '2026-09-01'
   dr: 91
+hashnode:
+- date: '2026-09-01'
+  dr: 83
+hubspot-app-marketplace:
+- date: '2026-09-01'
+  dr: 93
 inboxreads:
 - date: '2026-09-01'
   dr: 46
@@ -109,24 +238,87 @@ indie-hackers:
 insidr-ai:
 - date: '2026-09-01'
   dr: 48
+killerstartups:
+- date: '2026-09-01'
+  dr: 71
+launchingnext:
+- date: '2026-09-01'
+  dr: 53
 letterlist:
 - date: '2026-09-01'
   dr: 41
 libhunt:
 - date: '2026-09-01'
   dr: 66
+libraries-io:
+- date: '2026-09-01'
+  dr: 75
+lobsters:
+- date: '2026-09-01'
+  dr: 75
+macnative:
+- date: '2026-09-01'
+  dr: 8
+marketingprofs:
+- date: '2026-09-01'
+  dr: 83
 mcp-so:
 - date: '2026-09-01'
   dr: 73
+microlaunch:
+- date: '2026-09-01'
+  dr: 64
+microsoft-appsource:
+- date: '2026-09-01'
+  dr: 96
+newsletter-junkie:
+- date: '2026-09-01'
+  dr: 33
+newsletter-surf:
+- date: '2026-09-01'
+  dr: 16
+newsletters-co:
+- date: '2026-09-01'
+  dr: 35
+nextpedia:
+- date: '2026-09-01'
+  dr: 13
+nocode-mba:
+- date: '2026-09-01'
+  dr: 58
 nocode-tech:
 - date: '2026-09-01'
   dr: 65
+nocodefinder:
+- date: '2026-09-01'
+  dr: 42
+nocodelist:
+- date: '2026-09-01'
+  dr: 37
+nomad-list:
+- date: '2026-09-01'
+  dr: 76
+open-hub:
+- date: '2026-09-01'
+  dr: 78
 open-source-alternative:
 - date: '2026-09-01'
   dr: 49
+openalternative:
+- date: '2026-09-01'
+  dr: 61
+openfuture-ai:
+- date: '2026-09-01'
+  dr: 55
+opensaas-directory:
+- date: '2026-09-01'
+  dr: 5
 opentools:
 - date: '2026-09-01'
   dr: 70
+oss-insight:
+- date: '2026-09-01'
+  dr: 68
 peerlist:
 - date: '2026-09-01'
   dr: 77
@@ -136,60 +328,132 @@ peerspot:
 phygital-plus:
 - date: '2026-09-01'
   dr: 46
+pitchbook:
+- date: '2026-09-01'
+  dr: 84
+pitchwall:
+- date: '2026-09-01'
+  dr: 68
+postman-api-network:
+- date: '2026-09-01'
+  dr: 91
 product-hunt:
 - date: '2026-09-01'
   dr: 91
+productivity-directory:
+- date: '2026-09-01'
+  dr: 41
 programmableweb:
 - date: '2026-09-01'
   dr: 77
+publicapis-io:
+- date: '2026-09-01'
+  dr: 41
 pulsemcp:
 - date: '2026-09-01'
   dr: 71
+rad-letters:
+- date: '2026-09-01'
+  dr: 33
 rapidapi:
 - date: '2026-09-01'
   dr: 83
+saasaitools:
+- date: '2026-09-01'
+  dr: 53
 saashub:
 - date: '2026-09-01'
   dr: 80
+saastr:
+- date: '2026-09-01'
+  dr: 78
 saasworthy:
 - date: '2026-09-01'
   dr: 75
+salesforce-appexchange:
+- date: '2026-09-01'
+  dr: 92
 serchen:
 - date: '2026-09-01'
   dr: 67
+shopify-app-store:
+- date: '2026-09-01'
+  dr: 96
+slack-app-directory:
+- date: '2026-09-01'
+  dr: 92
 slant:
 - date: '2026-09-01'
   dr: 69
+slashdot:
+- date: '2026-09-01'
+  dr: 87
 smithery:
 - date: '2026-09-01'
   dr: 79
+softpedia:
+- date: '2026-09-01'
+  dr: 86
 software-advice:
 - date: '2026-09-01'
   dr: 87
 softwaresuggest:
 - date: '2026-09-01'
   dr: 78
+softwareworld:
+- date: '2026-09-01'
+  dr: 73
 sourceforge:
 - date: '2026-09-01'
   dr: 93
 spiceworks:
 - date: '2026-09-01'
   dr: 87
+stack-overflow:
+- date: '2026-09-01'
+  dr: 92
 stackshare:
 - date: '2026-09-01'
   dr: 78
+startup-grind:
+- date: '2026-09-01'
+  dr: 76
+startupbase:
+- date: '2026-09-01'
+  dr: 74
+startupblink:
+- date: '2026-09-01'
+  dr: 73
+submit-ai-tools:
+- date: '2026-09-01'
+  dr: 76
+supertools:
+- date: '2026-09-01'
+  dr: 71
+tekpon:
+- date: '2026-09-01'
+  dr: 72
 theres-an-ai-for-that:
 - date: '2026-09-01'
   dr: 77
 tinylaunch:
 - date: '2026-09-01'
   dr: 74
+tooldirectory-ai:
+- date: '2026-09-01'
+  dr: 49
 toolify:
 - date: '2026-09-01'
   dr: 73
+toolpilot:
+- date: '2026-09-01'
+  dr: 78
 topai-tools:
 - date: '2026-09-01'
   dr: 64
+tracxn:
+- date: '2026-09-01'
+  dr: 79
 trustpilot:
 - date: '2026-09-01'
   dr: 94
@@ -199,9 +463,18 @@ trustradius:
 uneed:
 - date: '2026-09-01'
   dr: 76
+uptodown:
+- date: '2026-09-01'
+  dr: 83
+warrior-forum:
+- date: '2026-09-01'
+  dr: 74
 wellfound:
 - date: '2026-09-01'
   dr: 87
+wordpress-plugin-directory:
+- date: '2026-09-01'
+  dr: 97
 zapier-app-directory:
 - date: '2026-09-01'
   dr: 91

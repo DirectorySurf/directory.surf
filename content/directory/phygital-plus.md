@@ -4,7 +4,8 @@ website: "https://www.phygital.plus"
 categories: ["ai-directory"]
 description: "An AI tools directory with detailed per-tool breakdowns of features, pricing tiers, and use cases."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for featured placement."

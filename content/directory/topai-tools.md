@@ -4,7 +4,8 @@ website: "https://topai.tools"
 categories: ["ai-directory"]
 description: "An AI tools directory that ranks listings by upvotes and traffic signals rather than purely editorial curation."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for faster review and featured placement."

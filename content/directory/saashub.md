@@ -4,10 +4,19 @@ website: "https://www.saashub.com"
 categories: ["saas-directory"]
 description: "A community-driven SaaS directory that emphasizes tool-vs-tool comparisons and alternatives."
 pricing:
-  free_available: true
-  starting_price: 0
+  free_submit: true
+  require_badge: false
+  starting_price: 99
   price_period: "month"
-  notes: "Free listing; paid promoted placement for vendors."
+  notes: "Free listing after verification; paid Featured Products promotion is a flat $99/month that buys visibility, not ranking."
+plans:
+  - name: "Free"
+    price: 0
+    description: "Basic listing after verification review."
+  - name: "Featured"
+    price: 99
+    period: "month"
+    description: "Homepage and category-page promotion; does not affect ranking position."
 ahrefs_dr: 80
 founded: 2017-01-01
 ---

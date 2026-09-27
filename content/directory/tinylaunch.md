@@ -4,7 +4,8 @@ website: "https://www.tinylaunch.com"
 categories: ["launch-platforms", "startup-directory"]
 description: "A lower-pressure, weekly Product Hunt alternative for indie makers, awarding a badge and high-authority backlink to top launches."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 15
   price_period: "week"
   notes: "Free queued launch with badge eligibility; $39 one-time skips the queue for guaranteed priority placement, $15-30/week for featured placement, plus paid add-ons like a $279 multi-directory submission service."

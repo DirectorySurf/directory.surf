@@ -4,10 +4,11 @@ website: "https://appsumo.com"
 categories: ["saas-directory"]
 description: "A deals marketplace for SaaS and digital tools, best known for lifetime-deal offers to early customers."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
-  notes: "Free to browse; deals themselves are one-time paid purchases, often lifetime access."
+  notes: "Free to apply as a partner; highly selective (most pitches are rejected), and AppSumo takes a revenue share instead of charging a listing fee."
 ahrefs_dr: 83
 founded: 2010-01-01
 ---

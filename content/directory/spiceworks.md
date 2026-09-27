@@ -4,7 +4,8 @@ website: "https://www.spiceworks.com"
 categories: ["software-reviews", "saas-directory"]
 description: "An IT professional community whose software reviews and comparisons draw on a large base of working IT admins."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free for the community; paid lead-gen and advertising plans for vendors."

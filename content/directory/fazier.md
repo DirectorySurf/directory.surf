@@ -4,10 +4,21 @@ website: "https://fazier.com"
 categories: ["launch-platforms"]
 description: "A product discovery platform for daily new product launches, positioned as a faster-moving alternative to Product Hunt."
 pricing:
-  free_available: true
-  starting_price: 0
-  price_period: "month"
-  notes: "Free listing; paid options for guaranteed features and advertising."
+  free_submit: true
+  require_badge: true
+  starting_price: 29
+  price_period: "one-time"
+  notes: "Free Basic tier requires a backlink to Fazier; paid tiers remove that requirement."
+plans:
+  - name: "Basic"
+    price: 0
+    description: "Reviewed and listed within 30 days; requires a backlink to Fazier on your homepage or footer."
+  - name: "Lite"
+    price: 29
+    description: "Immediate or scheduled launch, homepage placement, social promotion, and no backlink requirement."
+  - name: "Premium"
+    price: 49
+    description: "All Lite features plus 15 days of platform-wide promotion and a guaranteed DR 83+ backlink."
 ahrefs_dr: 83
 founded: 2023-01-01
 ---

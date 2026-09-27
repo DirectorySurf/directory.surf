@@ -17,10 +17,10 @@
               {{ partial "category-badge.html" (dict "page" .) }}
             {{ end }}
           {{ end }}
-          {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+          {{ if and $price.free_submit (not $price.require_badge) }}
             <span class="badge badge-free">Free</span>
-          {{ else if $price.free_available }}
-            <span class="badge badge-free">Free tier</span>
+          {{ else if $price.free_submit }}
+            <span class="badge badge-free">Free/Badge</span>
           {{ else }}
             <span class="badge">From ${{ $price.starting_price }}/{{ $price.price_period }}</span>
           {{ end }}
@@ -37,10 +37,10 @@
       <div>
         <dt>{{ partial "icon.html" "pricing" }}Pricing</dt>
         <dd>
-          {{ if and $price.free_available (eq (int $price.starting_price) 0) }}
+          {{ if and $price.free_submit (not $price.require_badge) }}
             <span class="badge badge-free">Free</span>
-          {{ else if $price.free_available }}
-            <span class="badge badge-free">Free tier</span> + from ${{ $price.starting_price }}/{{ $price.price_period }}
+          {{ else if $price.free_submit }}
+            <span class="badge badge-free">Free/Badge</span>
           {{ else }}
             From ${{ $price.starting_price }}/{{ $price.price_period }}
           {{ end }}

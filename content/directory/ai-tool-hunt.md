@@ -4,7 +4,8 @@ website: "https://www.aitoolhunt.com"
 categories: ["ai-directory"]
 description: "An AI tools search engine and directory that lets visitors filter tools by category, pricing, and platform."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for featured placement."

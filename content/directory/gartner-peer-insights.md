@@ -4,7 +4,8 @@ website: "https://www.gartner.com/reviews"
 categories: ["software-reviews"]
 description: "Gartner's verified enterprise software review platform, closely tied to its analyst research and Magic Quadrants."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to read; vendor participation and review-response tools tied to Gartner relationships."

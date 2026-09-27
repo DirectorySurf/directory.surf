@@ -4,7 +4,8 @@ website: "https://www.insidr.ai"
 categories: ["ai-directory"]
 description: "An AI tools directory and newsletter combo, aimed at helping professionals apply AI tools to daily work."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free directory and newsletter; paid featured placement for vendors."

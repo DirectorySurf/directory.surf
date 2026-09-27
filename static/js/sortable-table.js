@@ -38,15 +38,29 @@
 
       function activate() {
         var type = th.getAttribute("data-sort-type");
+        var field = th.getAttribute("data-sort-field");
         var currentDirection = th.getAttribute("aria-sort");
         var nextDirection = currentDirection === "ascending" ? "descending" : "ascending";
+        var direction = nextDirection === "ascending" ? "asc" : "desc";
+
+        // Give a listener (e.g. directory-tabs.js) first refusal: it can re-sort the full
+        // site-wide dataset instead of just the rows on this page. If nothing calls
+        // preventDefault() on this, fall back to the plain single-page DOM sort below.
+        var notPrevented = table.dispatchEvent(
+          new CustomEvent("directorysort", {
+            bubbles: true,
+            cancelable: true,
+            detail: { field: field, type: type, direction: direction, columnIndex: columnIndex }
+          })
+        );
+        if (!notPrevented) return;
 
         headers.forEach(function (otherTh) {
           otherTh.setAttribute("aria-sort", "none");
         });
         th.setAttribute("aria-sort", nextDirection);
 
-        sortTable(table, columnIndex, type, nextDirection === "ascending" ? "asc" : "desc");
+        sortTable(table, columnIndex, type, direction);
       }
 
       th.addEventListener("click", activate);

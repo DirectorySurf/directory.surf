@@ -133,12 +133,12 @@
 
     var price = item.pricing || {};
     var priceBadge = document.createElement("span");
-    if (price.free_available && parseFloat(price.starting_price) === 0) {
+    if (price.free_submit && !price.require_badge) {
       priceBadge.className = "badge badge-free";
       priceBadge.textContent = "Free";
-    } else if (price.free_available) {
+    } else if (price.free_submit) {
       priceBadge.className = "badge badge-free";
-      priceBadge.textContent = "Free tier";
+      priceBadge.textContent = "Free/Badge";
     } else {
       priceBadge.className = "badge";
       priceBadge.textContent = "From $" + price.starting_price + "/" + price.price_period;

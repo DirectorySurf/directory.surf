@@ -4,7 +4,8 @@ website: "https://www.capterra.com"
 categories: ["saas-directory", "software-reviews"]
 description: "A long-running software directory and review site owned by Gartner, covering thousands of categories."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid pay-per-click placement for vendors."

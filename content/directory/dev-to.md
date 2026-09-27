@@ -4,7 +4,8 @@ website: "https://dev.to"
 categories: ["dev-community"]
 description: "A large blogging and discussion community for software developers to publish tutorials and discuss the craft."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to join, post, and comment; no paid tier for individual developers."

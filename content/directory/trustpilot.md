@@ -4,10 +4,11 @@ website: "https://www.trustpilot.com"
 categories: ["software-reviews"]
 description: "A general-purpose consumer review platform that also hosts a large volume of SaaS and software reviews."
 pricing:
-  free_available: true
-  starting_price: 0
+  free_submit: true
+  require_badge: false
+  starting_price: 99
   price_period: "month"
-  notes: "Free profile; paid plans for review-management and marketing tools."
+  notes: "Free profile; paid plans start around $99/month (annual billing) for review-management tools."
 ahrefs_dr: 94
 founded: 2007-01-01
 ---

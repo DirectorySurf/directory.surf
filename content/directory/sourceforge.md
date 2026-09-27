@@ -4,7 +4,8 @@ website: "https://sourceforge.net"
 categories: ["saas-directory", "software-reviews", "open-source-directory"]
 description: "One of the longest-running software directories, now covering commercial SaaS alongside its open-source roots."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid options for lead generation and featured placement."

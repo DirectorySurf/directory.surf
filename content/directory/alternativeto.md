@@ -4,7 +4,8 @@ website: "https://alternativeto.net"
 categories: ["saas-directory", "alternatives", "tools-directory", "open-source-directory"]
 description: "A crowdsourced directory built specifically around finding alternatives to a given piece of software."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and contribute; optional paid ad-free membership for users."

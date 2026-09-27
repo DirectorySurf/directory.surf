@@ -4,10 +4,11 @@ website: "https://betalist.com"
 categories: ["launch-platforms", "startup-directory"]
 description: "A directory of early-stage startups and products still in beta, used by founders to get first users."
 pricing:
-  free_available: true
+  free_submit: false
+  require_badge: false
   starting_price: 0
   price_period: "month"
-  notes: "Free waitlist submission; paid plans for guaranteed or featured launches."
+  notes: "No free submission queue anymore; all listings are paid, with the exact price shown at checkout and refunded if rejected."
 ahrefs_dr: 77
 founded: 2011-01-01
 ---

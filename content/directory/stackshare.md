@@ -4,7 +4,8 @@ website: "https://stackshare.io"
 categories: ["saas-directory", "tools-directory", "dev-community"]
 description: "A directory of developer tools and infrastructure organized around the tech stacks companies actually use."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse and post stacks; paid options for vendor visibility."

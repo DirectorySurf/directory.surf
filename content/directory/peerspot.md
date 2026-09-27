@@ -4,10 +4,11 @@ website: "https://www.peerspot.com"
 categories: ["software-reviews"]
 description: "An enterprise IT review platform (formerly IT Central Station) built on verified, in-depth peer reviews."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
-  notes: "Free to read reviews with registration; paid vendor plans for enhanced profiles and reports."
+  notes: "Vendors with 50+ employees and 10+ enterprise customers get a free listing via email; no pay-to-play for basic listing."
 ahrefs_dr: 75
 founded: 2012-01-01
 ---

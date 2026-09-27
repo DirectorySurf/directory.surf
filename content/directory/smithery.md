@@ -4,7 +4,8 @@ website: "https://smithery.ai"
 categories: ["mcp-directory"]
 description: "A registry for discovering and publishing MCP servers, with hosted deployment and managed auth for connecting agents to third-party services."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to list and browse; hosting/deployment usage may carry its own costs."

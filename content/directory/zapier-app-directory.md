@@ -4,7 +4,8 @@ website: "https://zapier.com/apps"
 categories: ["saas-directory", "app-directory", "no-code-directory"]
 description: "Zapier's directory of thousands of integrable apps, doubling as a discovery tool for automation-friendly SaaS."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse; listing tied to building a Zapier integration rather than a paid placement fee."

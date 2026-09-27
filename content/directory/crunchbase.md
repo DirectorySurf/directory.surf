@@ -4,10 +4,24 @@ website: "https://www.crunchbase.com"
 categories: ["startup-directory", "founders-directory"]
 description: "A widely-used database of companies, founders, and funding rounds, used for deal sourcing and market research."
 pricing:
-  free_available: true
-  starting_price: 0
+  free_submit: true
+  require_badge: false
+  starting_price: 29
   price_period: "month"
-  notes: "Free tier with limited data; paid Pro/Enterprise plans unlock full search and export."
+  notes: "Company profiles are free and largely crowd-sourced/self-submitted; paid Starter/Pro/Business plans (from ~$29/mo) unlock full search and export for data buyers."
+plans:
+  - name: "Starter"
+    price: 29
+    period: "month"
+    description: "Billed annually; core search and company data for individuals."
+  - name: "Pro"
+    price: 49
+    period: "month"
+    description: "Billed annually ($99/mo billed monthly); expanded search, lists, and exports."
+  - name: "Business"
+    price: 199
+    period: "month"
+    description: "CRM integrations, larger exports, and AI industry trend analysis."
 ahrefs_dr: 91
 founded: 2007-01-01
 ---

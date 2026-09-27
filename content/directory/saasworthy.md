@@ -4,7 +4,8 @@ website: "https://www.saasworthy.com"
 categories: ["saas-directory", "software-reviews"]
 description: "A SaaS discovery platform that ranks products using a blend of user reviews and social/traffic signals."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid plans for enhanced vendor profiles and lead access."

@@ -4,7 +4,8 @@ website: "https://altern.ai"
 categories: ["ai-directory"]
 description: "A large, searchable directory of AI tools with user reviews and alternative suggestions for each listing."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to submit a tool; paid options available for featured placement."

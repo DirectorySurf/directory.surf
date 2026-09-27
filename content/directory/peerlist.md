@@ -4,7 +4,8 @@ website: "https://peerlist.io"
 categories: ["launch-platforms", "dev-community"]
 description: "A professional network for developers and product people that doubles as a daily launch platform for new projects."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to join and launch; paid Pro tier adds extra profile and visibility features."

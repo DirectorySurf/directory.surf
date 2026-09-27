@@ -4,7 +4,8 @@ website: "https://coinmarketcap.com"
 categories: ["crypto-directory"]
 description: "The best-known cryptocurrency price-tracking directory, listing thousands of coins, exchanges, and tokens."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse; paid API plans for higher-volume data access."

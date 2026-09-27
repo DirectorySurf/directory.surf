@@ -4,7 +4,8 @@ website: "https://www.nocode.tech"
 categories: ["no-code-directory"]
 description: "A curated directory of no-code and low-code tools organized by use case, from web app builders to internal tools."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to browse."

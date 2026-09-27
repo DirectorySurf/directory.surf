@@ -4,7 +4,8 @@ website: "https://financesonline.com"
 categories: ["saas-directory", "software-reviews"]
 description: "A B2B software directory known for its own scoring system (SmartScore) alongside user reviews."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid vendor plans for premium placement and badges."

@@ -4,7 +4,8 @@ website: "https://www.behance.net"
 categories: ["design-community"]
 description: "Adobe's design community for publishing in-depth creative case studies and portfolios across every design discipline."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free to use, integrated with Adobe Creative Cloud accounts."

@@ -4,7 +4,8 @@ website: "https://www.softwareadvice.com"
 categories: ["saas-directory", "software-reviews"]
 description: "A Gartner-owned software directory that pairs listings with human advisors who help buyers shortlist products."
 pricing:
-  free_available: true
+  free_submit: true
+  require_badge: false
   starting_price: 0
   price_period: "month"
   notes: "Free listing; paid lead-generation plans for vendors."

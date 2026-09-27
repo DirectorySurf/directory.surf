@@ -4,10 +4,11 @@ website: "https://www.programmableweb.com"
 categories: ["api-directory"]
 description: "One of the oldest and most extensive hand-curated directories of public APIs, paired with news and tutorials."
 pricing:
-  free_available: true
+  free_submit: false
+  require_badge: false
   starting_price: 0
   price_period: "month"
-  notes: "Free to browse; no paid vendor placement tier."
+  notes: "Site shut down by MuleSoft in 2023; no active submissions or listings remain."
 ahrefs_dr: 77
 founded: 2005-01-01
 ---

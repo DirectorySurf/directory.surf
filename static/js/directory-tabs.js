@@ -74,12 +74,12 @@
       return parseFloat((item.pricing || {}).starting_price) || 0;
     }
 
-    // Mirrors the Free / Free tier / paid-only classification buildRow() and
+    // Mirrors the Free / Free/Badge / paid-only classification buildRow() and
     // layouts/partials/directory-table.html render as badges.
     function pricingModel(item) {
       var price = item.pricing || {};
-      if (price.free_available && parseFloat(price.starting_price) === 0) return "free";
-      if (price.free_available) return "freemium";
+      if (price.free_submit && !price.require_badge) return "free";
+      if (price.free_submit) return "badge";
       return "paid";
     }
 
@@ -118,6 +118,37 @@
       if (value === "" || value === null || typeof value === "undefined") return null;
       var n = parseFloat(value);
       return isNaN(n) ? null : n;
+    }
+
+    // Filters/search/sort are mirrored into the URL's query string (see syncURL/applyFilters
+    // below) so a view is shareable and reloadable -- tabs and pagination stay path-based
+    // (real URLs, already handled by loadTab/loadPage) and are left out of the query string.
+    var QUERY_KEYS = { query: "q", sort: "sort", pricing: "pricing", drMin: "dr_min", drMax: "dr_max", visitorsMin: "visitors_min" };
+
+    function stateFromQueryString() {
+      var params = new URLSearchParams(window.location.search);
+      var sort = params.get("sort") || "";
+      return {
+        query: params.get("q") || "",
+        sort: SORTERS[sort] ? sort : "",
+        pricing: params.get("pricing") || "",
+        drMin: params.get("dr_min") || "",
+        drMax: params.get("dr_max") || "",
+        visitorsMin: params.get("visitors_min") || ""
+      };
+    }
+
+    function syncURL(state) {
+      var params = new URLSearchParams();
+      Object.keys(QUERY_KEYS).forEach(function (key) {
+        var value = state[key];
+        if (value !== null && typeof value !== "undefined" && value !== "") {
+          params.set(QUERY_KEYS[key], value);
+        }
+      });
+      var qs = params.toString();
+      var url = window.location.pathname + (qs ? "?" + qs : "");
+      window.history.replaceState(window.history.state, "", url);
     }
 
     if (!panel || !links.length) return;
@@ -238,19 +269,16 @@
       var price = item.pricing || {};
       var priceCell = document.createElement("td");
       priceCell.setAttribute("data-sort-value", price.starting_price);
-      if (price.free_available && parseFloat(price.starting_price) === 0) {
+      if (price.free_submit && !price.require_badge) {
         var freeBadge = document.createElement("span");
         freeBadge.className = "badge badge-free";
         freeBadge.textContent = "Free";
         priceCell.appendChild(freeBadge);
-      } else if (price.free_available) {
+      } else if (price.free_submit) {
         var tierBadge = document.createElement("span");
         tierBadge.className = "badge badge-free";
-        tierBadge.textContent = "Free tier";
+        tierBadge.textContent = "Free/Badge";
         priceCell.appendChild(tierBadge);
-        priceCell.appendChild(
-          document.createTextNode(" + from $" + price.starting_price + "/" + price.price_period)
-        );
       } else {
         priceCell.textContent = "From $" + price.starting_price + "/" + price.price_period;
       }
@@ -267,6 +295,17 @@
       row.appendChild(foundedCell);
 
       return row;
+    }
+
+    // Marks the header matching the active "<field>:<direction>" sort key as aria-sort
+    // ascending/descending -- called after DirectorySortable.init() has reset every header in
+    // this table to "none", since that init runs on every fresh (cloned) thead we render.
+    function markSortHeader(container, sort) {
+      if (!sort) return;
+      var parts = sort.split(":");
+      var th = container.querySelector('thead th[data-sort-field="' + parts[0] + '"]');
+      if (!th) return;
+      th.setAttribute("aria-sort", parts[1] === "asc" ? "ascending" : "descending");
     }
 
     function buildResultsTable(items) {
@@ -330,6 +369,7 @@
     function applyFilters() {
       var state = currentFilterState();
       updateFilterToggleUI(state);
+      syncURL(state);
 
       if (!isFilterActive(state)) {
         if (searchResults) {
@@ -380,6 +420,7 @@
         } else {
           searchResults.appendChild(buildResultsTable(matches));
           if (window.DirectorySortable) window.DirectorySortable.init(searchResults);
+          markSortHeader(searchResults, state.sort);
         }
         if (window.SavedDirectories) window.SavedDirectories.sync(searchResults);
       });
@@ -468,6 +509,42 @@
         });
       }
     }
+
+    // Bubbles up from sortable-table.js when a column header is clicked (see its
+    // "directorysort" CustomEvent). preventDefault() tells it we're handling this sort
+    // ourselves -- across the full site-wide dataset -- instead of letting it fall back to
+    // reordering just the rows on the current page.
+    root.addEventListener("directorysort", function (e) {
+      var field = e.detail && e.detail.field;
+      if (!field) return;
+      var key = field + ":" + e.detail.direction;
+      if (!SORTERS[key]) return;
+      e.preventDefault();
+      lastAppliedFilters.sort = key;
+      if (filterSortSelect) filterSortSelect.value = key;
+      applyFilters();
+    });
+
+    // Restores a filtered/sorted view from the URL's query string (see syncURL) so a shared
+    // or reloaded link reproduces the same table -- tab/page navigation stay path-based and
+    // are handled by loadTab/loadPage instead.
+    (function initFromQueryString() {
+      var initial = stateFromQueryString();
+      if (searchInput) searchInput.value = initial.query;
+      lastAppliedFilters = {
+        sort: initial.sort,
+        pricing: initial.pricing,
+        drMin: initial.drMin,
+        drMax: initial.drMax,
+        visitorsMin: initial.visitorsMin
+      };
+      writeFilterFields(lastAppliedFilters);
+      var state = currentFilterState();
+      updateFilterToggleUI(state);
+      if (isFilterActive(state)) {
+        applyFilters();
+      }
+    })();
 
     // The "All directories" blurb above the table (present on the homepage only, via
     // data-directory-heading/data-directory-lede) mirrors whichever tab is active, using the
