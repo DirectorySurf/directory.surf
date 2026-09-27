@@ -1,0 +1,33 @@
+{{- /* Monthly-visitors history sparkline for a directory, built from data/visitors_history.yaml
+      (keyed by slug, same shape as data/dr_history.yaml: a list of {date, visitors} entries)
+      via the generic history-chart.html partial. Renders nothing until that directory has 2+
+      months of history. Call with a directory Page. */ -}}
+{{- $history := index hugo.Data.visitors_history .File.ContentBaseName | default slice -}}
+{{- $n := len $history -}}
+{{- if ge $n 2 -}}
+  {{- $values := slice -}}
+  {{- range $history }}{{ $values = $values | append (float .visitors) }}{{ end -}}
+
+  {{- $first := index $history 0 -}}
+  {{- $last := index $history (sub $n 1) -}}
+  {{- $delta := sub (float $last.visitors) (float $first.visitors) -}}
+  {{- $month := (time.AsTime $first.date).Format "Jan 2006" -}}
+
+  {{- $deltaText := printf "no change since %s" $month -}}
+  {{- if gt $delta 0.0 -}}
+    {{- $deltaText = printf "+%s since %s" (partial "format-compact-number.html" $delta) $month -}}
+  {{- else if lt $delta 0.0 -}}
+    {{- $deltaText = printf "-%s since %s" (partial "format-compact-number.html" (math.Abs $delta)) $month -}}
+  {{- end -}}
+
+  {{- $ariaLabel := printf "Monthly visitors trend: %s in %s, now %s"
+      (partial "format-compact-number.html" (float $first.visitors)) $month
+      (partial "format-compact-number.html" (float $last.visitors)) -}}
+
+  {{ partial "history-chart.html" (dict
+    "values" $values
+    "id" (printf "visitors-chart-fade-%s" .File.ContentBaseName)
+    "deltaText" $deltaText
+    "ariaLabel" $ariaLabel
+  ) }}
+{{- end -}}

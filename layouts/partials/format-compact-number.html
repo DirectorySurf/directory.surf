@@ -1,0 +1,19 @@
+{{- /* Formats a non-negative number compactly: under 1,000 as a plain integer, 1,000 and up
+      abbreviated with a k/m suffix (1000 -> "1k", 1100 -> "1.1k", 2500000 -> "2.5m"), trimming
+      a trailing ".0". Call with the number as context: `partial "format-compact-number.html" $n`. */ -}}
+{{- $n := . -}}
+{{- if lt $n 1000.0 -}}
+  {{- printf "%.0f" $n -}}
+{{- else -}}
+  {{- $unit := "k" -}}
+  {{- $divisor := 1000.0 -}}
+  {{- if ge $n 1000000.0 -}}{{- $unit = "m" -}}{{- $divisor = 1000000.0 -}}{{- end -}}
+  {{- $scaled := div $n $divisor -}}
+  {{- if and (eq $unit "k") (ge $scaled 999.95) -}}
+    {{- $unit = "m" -}}
+    {{- $scaled = div $n 1000000.0 -}}
+  {{- end -}}
+  {{- $rounded := printf "%.1f" $scaled -}}
+  {{- $rounded = strings.TrimSuffix ".0" $rounded -}}
+  {{- $rounded -}}{{- $unit -}}
+{{- end -}}

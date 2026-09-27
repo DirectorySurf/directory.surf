@@ -1,0 +1,80 @@
+{{- /* Generic small inline-SVG sparkline for a directory history metric (Ahrefs DR, monthly
+      visitors, ...), server-rendered (no client-side JS/chart library) as a smooth line through
+      quadratic-bezier midpoints, with the area beneath it filled by a fading gradient.
+
+      Call with a dict:
+        values    - slice of >=2 floats, chronological (nothing renders if fewer than 2)
+        id        - string, unique across the page, used for the SVG gradient id
+        deltaText - pre-formatted magnitude + context, e.g. "+7 since Apr 2026" or
+                    "no change since Apr 2026" (no leading arrow -- this partial adds one
+                    based on the trend it derives from `values`)
+        ariaLabel - full accessible description of the trend for the chart's role="img" */ -}}
+{{- $values := .values -}}
+{{- $n := len $values -}}
+{{- if ge $n 2 -}}
+  {{- $w := 168.0 -}}
+  {{- $h := 48.0 -}}
+  {{- $padX := 3.0 -}}
+  {{- $padY := 6.0 -}}
+
+  {{- $sorted := sort $values -}}
+  {{- $min := index $sorted 0 -}}
+  {{- $max := index $sorted (sub (len $sorted) 1) -}}
+  {{- $range := sub $max $min -}}
+
+  {{- $stepX := div (sub $w (mul $padX 2)) (float (sub $n 1)) -}}
+  {{- $plotH := sub $h (mul $padY 2) -}}
+
+  {{- $coords := slice -}}
+  {{- range $i, $v := $values -}}
+    {{- $x := add $padX (mul (float $i) $stepX) -}}
+    {{- $y := div $h 2.0 -}}
+    {{- if gt $range 0.0 -}}
+      {{- $normalized := div (sub (float $v) $min) $range -}}
+      {{- $y = sub (sub $h $padY) (mul $normalized $plotH) -}}
+    {{- end -}}
+    {{- $coords = $coords | append (dict "x" $x "y" $y) -}}
+  {{- end -}}
+
+  {{- $first := index $coords 0 -}}
+  {{- $line := printf "M%.1f,%.1f" $first.x $first.y -}}
+  {{- range $i, $p := $coords -}}
+    {{- if lt $i (sub (len $coords) 1) -}}
+      {{- $next := index $coords (add $i 1) -}}
+      {{- $midX := div (add $p.x $next.x) 2.0 -}}
+      {{- $midY := div (add $p.y $next.y) 2.0 -}}
+      {{- $line = printf "%s Q%.1f,%.1f %.1f,%.1f" $line $p.x $p.y $midX $midY -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $last := index $coords (sub (len $coords) 1) -}}
+  {{- $line = printf "%s L%.1f,%.1f" $line $last.x $last.y -}}
+  {{- $area := printf "%s L%.1f,%.1f L%.1f,%.1f Z" $line $last.x $h $first.x $h -}}
+
+  {{- $firstVal := index $values 0 -}}
+  {{- $lastVal := index $values (sub $n 1) -}}
+  {{- $delta := sub $lastVal $firstVal -}}
+  {{- $trend := "is-flat" -}}
+  {{- $arrow := "–" -}}
+  {{- if gt $delta 0.0 -}}
+    {{- $trend = "is-up" -}}
+    {{- $arrow = "▲" -}}
+  {{- else if lt $delta 0.0 -}}
+    {{- $trend = "is-down" -}}
+    {{- $arrow = "▼" -}}
+  {{- end -}}
+
+  <div class="history-chart">
+    <svg class="history-chart-svg {{ $trend }}" viewBox="0 0 {{ $w }} {{ $h }}" preserveAspectRatio="none"
+         role="img" aria-label="{{ .ariaLabel }}">
+      <defs>
+        <linearGradient id="{{ .id }}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="currentColor" stop-opacity="0.22" />
+          <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path class="history-chart-area" d="{{ $area }}" fill="url(#{{ .id }})" stroke="none" />
+      <path class="history-chart-line" d="{{ $line }}" fill="none" />
+    </svg>
+    <span class="history-chart-delta {{ $trend }}">{{ $arrow }} {{ .deltaText }}</span>
+  </div>
+{{- end -}}

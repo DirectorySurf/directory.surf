@@ -56,7 +56,10 @@
       </div>
       <div>
         <dt>{{ partial "icon.html" "visitors" }}Monthly visitors</dt>
-        <dd>{{ partial "format-visitors.html" . }}</dd>
+        <dd>
+          {{ partial "format-visitors.html" . }}
+          {{ partial "visitors-chart.html" . }}
+        </dd>
       </div>
       <div>
         <dt>{{ partial "icon.html" "founded" }}Founded</dt>

@@ -1617,7 +1617,7 @@ a.badge:hover {
   color: var(--text-muted);
 }
 
-.dr-chart {
+.history-chart {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -1625,14 +1625,14 @@ a.badge:hover {
   color: var(--accent);
 }
 
-.dr-chart-svg {
+.history-chart-svg {
   display: block;
   width: 100%;
   max-width: 168px;
   height: 40px;
 }
 
-.dr-chart-line {
+.history-chart-line {
   stroke: currentColor;
   stroke-width: 1.75;
   stroke-linecap: round;
@@ -1640,33 +1640,33 @@ a.badge:hover {
   vector-effect: non-scaling-stroke;
 }
 
-.dr-chart-svg.is-down {
+.history-chart-svg.is-down {
   color: #c0392b;
 }
 
 @media (prefers-color-scheme: dark) {
-  .dr-chart-svg.is-down {
+  .history-chart-svg.is-down {
     color: #e5766a;
   }
 }
 
-.dr-chart-delta {
+.history-chart-delta {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--accent);
 }
 
-.dr-chart-delta.is-down {
+.history-chart-delta.is-down {
   color: #c0392b;
 }
 
-.dr-chart-delta.is-flat {
+.history-chart-delta.is-flat {
   color: var(--text-muted);
   font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
-  .dr-chart-delta.is-down {
+  .history-chart-delta.is-down {
     color: #e5766a;
   }
 }
