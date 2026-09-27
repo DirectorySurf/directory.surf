@@ -10,11 +10,10 @@
         <th data-sort-type="number"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 3H6a1 1 0 0 0-1 1v6.6a1 1 0 0 0 .29.71l8.4 8.4a1 1 0 0 0 1.42 0l6.6-6.6a1 1 0 0 0 0-1.42l-8.4-8.4A1 1 0 0 0 12.6 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor"/></svg>Pricing</th>
         <th data-sort-type="number"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19v-6M11 19V7M17 19v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ahrefs DR</th>
         <th data-sort-type="date"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Founded</th>
-        <th class="save-col"><svg class="th-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1V20l-6.5-4-6.5 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/></svg><span class="sr-only">Save</span></th>
       </tr>
     </thead>
     <tbody>
-      {{ range $pages.ByTitle }}
+      {{ range ($pages.ByParam "ahrefs_dr").Reverse }}
         {{ $price := .Params.pricing }}
         <tr>
           <td data-sort-value="{{ .Title }}">
@@ -23,9 +22,12 @@
                 {{ partial "favicon-img.html" . }}
                 <span>{{ .Title }}</span>
               </a>
-              <a class="visit-link" href="{{ partial "utm-url.html" .Params.website }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="Open {{ .Title }} in a new tab" title="Open in new tab">
-                <svg class="visit-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-3M14 4h6v6M20 4 10 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-              </a>
+              <div class="directory-name-actions">
+                <a class="visit-link" href="{{ partial "utm-url.html" .Params.website }}" target="_blank" rel="noopener nofollow" referrerpolicy="origin" aria-label="Open {{ .Title }} in a new tab" title="Open in new tab">
+                  <svg class="visit-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-3M14 4h6v6M20 4 10 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </a>
+                {{ partial "save-button.html" . }}
+              </div>
             </div>
           </td>
           <td data-sort-value="{{ $price.starting_price }}">
@@ -40,7 +42,6 @@
           {{ $founded := .Params.founded | time.AsTime }}
           <td data-sort-value="{{ .Params.ahrefs_dr }}">{{ .Params.ahrefs_dr }}</td>
           <td data-sort-value="{{ $founded.Format "2006-01-02" }}">{{ $founded.Format "2006" }}</td>
-          <td class="save-col">{{ partial "save-button.html" . }}</td>
         </tr>
       {{ end }}
     </tbody>

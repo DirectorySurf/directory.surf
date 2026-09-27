@@ -3,14 +3,17 @@
   <span class="sidebar-heading">Categories</span>
   <ul class="sidebar-list">
     <li>
-      <a class="sidebar-link{{ if or $current.IsHome (eq $current.Section "directory") }} is-current{{ end }}" href="{{ "/" | relURL }}">All directories</a>
+      <a class="sidebar-link{{ if or $current.IsHome (eq $current.Section "directory") }} is-current{{ end }}" href="{{ "/" | relURL }}">
+        <span class="sidebar-link-icon">{{ with resources.Get "icons/all-directories.svg" }}{{ .Content | safeHTML }}{{ end }}</span>
+        All directories
+      </a>
     </li>
     {{ with site.GetPage "category" }}
-      {{ range .RegularPages.ByTitle }}
+      {{ range .RegularPages.ByParam "sort" }}
         <li>
           <a class="sidebar-link{{ if eq $current.RelPermalink .RelPermalink }} is-current{{ end }}" href="{{ .RelPermalink }}">
             <span class="sidebar-link-icon">{{ partial "category-icon.html" . }}</span>
-            {{ .Title }}
+            {{ .Params.plural | default .Title }}
           </a>
         </li>
       {{ end }}

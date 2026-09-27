@@ -1,22 +1,27 @@
 {{- /* Call with a dict: {"active": "" | "<category-slug>", "pages": <Pages to render initially>}.
       Renders an "All" tab, one tab per featured category, and an overflow "More" menu for the
       rest. Tabs are plain links (real pages, so they work with no JS); directory-tabs.js
-      progressively enhances clicks into a fetch() + pushState swap of the table only. */ -}}
+      progressively enhances clicks into a fetch() + pushState swap of the table only.
+
+      Each tab link also carries data-tab-slug (its category slug, "" for All) so
+      directory-tabs.js's search box knows which /directories.json items belong to the
+      currently active tab -- that dataset (see layouts/index.directories.json) covers every
+      directory site-wide, not just the paginated page currently loaded in the panel. */ -}}
 {{- $active := .active -}}
 {{- $initialPages := .pages -}}
 {{- $paginator := .paginator -}}
 {{- $allCategories := slice -}}
 {{- with site.GetPage "category" -}}
-  {{- $allCategories = .RegularPages.ByTitle -}}
+  {{- $allCategories = .RegularPages.ByParam "sort" -}}
 {{- end -}}
 {{- $featured := where $allCategories "Params.featured" true -}}
 {{- $overflow := where $allCategories "Params.featured" "!=" true -}}
 {{- $overflowActiveTitle := "" -}}
 {{- range $overflow -}}
-  {{- if eq $active .File.ContentBaseName -}}{{- $overflowActiveTitle = .Title -}}{{- end -}}
+  {{- if eq $active .File.ContentBaseName -}}{{- $overflowActiveTitle = (.Params.plural | default .Title) -}}{{- end -}}
 {{- end -}}
 {{- $overflowActive := ne $overflowActiveTitle "" -}}
-<div class="directory-tabs" data-directory-tabs>
+<div class="directory-tabs" data-directory-tabs data-directories-url="{{ "/directories.json" | relURL }}">
   <div class="tab-list" role="tablist">
     <a
       role="tab"
@@ -26,7 +31,10 @@
       data-tab-link
       data-tab-url="{{ "/" | relURL }}"
       data-tab-fragment="{{ "/table.html" | relURL }}"
-    >All</a>
+      data-tab-slug=""
+      data-tab-title="All directories"
+      data-tab-desc="{{ site.Params.description }}"
+    ><span class="tab-link-icon">{{ with resources.Get "icons/all-directories.svg" }}{{ .Content | safeHTML }}{{ end }}</span>All</a>
     {{ range $featured }}
       {{ $slug := .File.ContentBaseName }}
       <a
@@ -37,7 +45,10 @@
         data-tab-link
         data-tab-url="{{ .RelPermalink }}"
         data-tab-fragment="{{ .RelPermalink }}table.html"
-      ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Title }}</a>
+        data-tab-slug="{{ $slug }}"
+        data-tab-title="{{ .Params.plural | default .Title }}"
+        data-tab-desc="{{ .Params.description }}"
+      ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Params.plural | default .Title }}</a>
     {{ end }}
     {{ if $overflow }}
       <div class="tab-more{{ if $overflowActive }} is-active{{ end }}" data-tab-more>
@@ -48,8 +59,14 @@
           aria-expanded="false"
           data-tab-more-toggle
         >
-          <span data-tab-more-label data-tab-more-default="More">{{ if $overflowActive }}{{ $overflowActiveTitle }}{{ else }}More{{ end }}</span>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="tab-more-icon">
+          <span data-tab-more-label>{{ if $overflowActive }}{{ $overflowActiveTitle }}{{ else }}
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="tab-more-icon tab-more-ellipsis">
+              <circle cx="5" cy="12" r="1.6" fill="currentColor"/>
+              <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
+              <circle cx="19" cy="12" r="1.6" fill="currentColor"/>
+            </svg>
+          {{ end }}</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="tab-more-icon tab-more-chevron">
             <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
@@ -63,14 +80,104 @@
               data-tab-link
               data-tab-url="{{ .RelPermalink }}"
               data-tab-fragment="{{ .RelPermalink }}table.html"
-            ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Title }}</a>
+              data-tab-slug="{{ $slug }}"
+              data-tab-title="{{ .Params.plural | default .Title }}"
+              data-tab-desc="{{ .Params.description }}"
+            ><span class="tab-link-icon">{{ partial "category-icon.html" . }}</span>{{ .Params.plural | default .Title }}</a>
           {{ end }}
         </div>
       </div>
     {{ end }}
   </div>
-  <div class="tab-panel" data-tab-panel>
-    {{ partial "directory-table.html" $initialPages }}
-    {{ with $paginator }}{{ partial "pagination.html" . }}{{ end }}
+  <div class="tab-panel">
+    <div class="table-toolbar">
+      <div class="table-search">
+        <svg class="table-search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+          <path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="search"
+          class="table-search-input"
+          data-table-search-input
+          placeholder="Search this table..."
+          aria-label="Search directories in this table"
+          autocomplete="off"
+        >
+      </div>
+      <div class="table-filter" data-table-filter>
+        <button
+          type="button"
+          class="table-filter-toggle"
+          data-filter-toggle
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <svg class="table-filter-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Filter
+          <span class="filter-badge" data-filter-badge hidden></span>
+        </button>
+      </div>
+    </div>
+    <div data-tab-panel>
+      {{ partial "directory-table.html" $initialPages }}
+      {{ with $paginator }}{{ partial "pagination.html" . }}{{ end }}
+    </div>
+    <div data-table-search-results hidden></div>
+    <div class="filter-modal-backdrop" data-filter-modal-backdrop hidden>
+      <div class="filter-modal" role="dialog" aria-modal="true" aria-labelledby="filter-modal-title" data-filter-modal>
+        <div class="filter-modal-header">
+          <h2 class="filter-modal-title" id="filter-modal-title">Filter directories</h2>
+          <button type="button" class="filter-modal-close" data-filter-close aria-label="Close filters">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="filter-modal-body">
+          <div class="filter-group">
+            <label class="filter-label" for="table-filter-sort">Sort by</label>
+            <select id="table-filter-sort" class="filter-select" data-filter-sort>
+              <option value="">Default</option>
+              <option value="title:asc">Directory (A&ndash;Z)</option>
+              <option value="title:desc">Directory (Z&ndash;A)</option>
+              <option value="price:asc">Pricing (low to high)</option>
+              <option value="price:desc">Pricing (high to low)</option>
+              <option value="dr:desc">Ahrefs DR (high to low)</option>
+              <option value="dr:asc">Ahrefs DR (low to high)</option>
+              <option value="founded:desc">Founded (newest)</option>
+              <option value="founded:asc">Founded (oldest)</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">Pricing model</span>
+            <div class="filter-options" data-filter-pricing>
+              <label class="filter-option"><input type="radio" name="table-filter-pricing" value="" checked> All</label>
+              <label class="filter-option"><input type="radio" name="table-filter-pricing" value="free"> Free</label>
+              <label class="filter-option"><input type="radio" name="table-filter-pricing" value="freemium"> Free tier + paid</label>
+              <label class="filter-option"><input type="radio" name="table-filter-pricing" value="paid"> Paid only</label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">Ahrefs DR range</span>
+            <div class="filter-range">
+              <input type="number" class="filter-input" data-filter-dr-min inputmode="numeric" min="0" max="100" placeholder="Min" aria-label="Minimum Ahrefs DR">
+              <span class="filter-range-sep" aria-hidden="true">&ndash;</span>
+              <input type="number" class="filter-input" data-filter-dr-max inputmode="numeric" min="0" max="100" placeholder="Max" aria-label="Maximum Ahrefs DR">
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label" for="table-filter-visitors-min">Minimum monthly visitors</label>
+            <input type="number" id="table-filter-visitors-min" class="filter-input" data-filter-visitors-min inputmode="numeric" min="0" step="100" placeholder="e.g. 1000">
+          </div>
+        </div>
+        <div class="filter-modal-footer">
+          <button type="button" class="filter-reset" data-filter-reset>Reset filters</button>
+          <button type="button" class="filter-apply" data-filter-apply>Apply filters</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,5 +1,7 @@
-{{- /* Full directory dataset for client-side rendering (the /saved/ page). Keep the fields in
-      sync with what static/js/saved-directories.js's buildCard() renders. */ -}}
+{{- /* Full directory dataset for client-side rendering: the /saved/ page (see
+      static/js/saved-directories.js's buildCard()), the table search box, and the filter
+      modal's Ahrefs DR / monthly visitors range filters (see static/js/directory-tabs.js's
+      buildRow() and applyFilters()). Keep the fields in sync with all three. */ -}}
 {{- $items := slice -}}
 {{- with site.GetPage "directory" -}}
   {{- range .RegularPages.ByTitle -}}
@@ -14,6 +16,7 @@
         ) -}}
       {{- end -}}
     {{- end -}}
+    {{- $founded := .Params.founded | time.AsTime -}}
     {{- $items = $items | append (dict
       "slug" .File.ContentBaseName
       "title" .Title
@@ -21,6 +24,8 @@
       "website" .Params.website
       "description" .Params.description
       "ahrefs_dr" .Params.ahrefs_dr
+      "monthly_visitors" .Params.monthly_visitors
+      "founded" ($founded.Format "2006-01-02")
       "pricing" .Params.pricing
       "categories" $categories
     ) -}}

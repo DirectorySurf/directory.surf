@@ -1,9 +1,9 @@
 {{ define "main" }}
   <h1>Categories</h1>
   {{ with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
-  {{ partial "itemlist-schema.html" (dict "pages" .RegularPages.ByTitle) }}
+  {{ partial "itemlist-schema.html" (dict "pages" (.RegularPages.ByParam "sort")) }}
   <ul class="category-list">
-    {{ range .RegularPages.ByTitle }}
+    {{ range .RegularPages.ByParam "sort" }}
       {{ $cat := . }}
       {{ $slug := .File.ContentBaseName }}
       {{ $dirPages := slice }}
